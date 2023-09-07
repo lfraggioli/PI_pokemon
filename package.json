@@ -1,0 +1,25 @@
+{
+  "name": "pi-pokemon",
+  "version": "1.0.0",
+  "description": "proyecto individual hecho para el bootcamp HENRY",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Lucas Fraggioli",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.1",
+    "pg": "^8.11.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-redux": "^7.2.3",
+    "react-router-dom": "^5.2.0",
+    "redux": "^4.0.5",
+    "sequelize": "^6.32.1",
+    "sequelize-cli": "^6.6.1"
+  }
+}
