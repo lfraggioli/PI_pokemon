@@ -9,7 +9,7 @@ const getPokemonById = async (req, res) => {
     if (dbPokemon) {
       const dbTypes = await dbPokemon.getTypes();
 
-      //* Construimos el objeto de respuesta con los datos del Pokémon y sus tipos
+      //* objeto con los datos del Pokémon desde DB y sus tipos
       const pokeDB = {
         name: dbPokemon.name,
         hp: dbPokemon.hp,
@@ -26,7 +26,7 @@ const getPokemonById = async (req, res) => {
         name: statObject.stat.name,
         base_stat: statObject.base_stat,
       }));
-      const typeNames = types.map((typeObject) => typeObject.type.name);
+      const typeNames = types.map((typeObj) => typeObj.type.name);
       const pokeData = {
         name,
         sprites: { front_default },
