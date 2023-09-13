@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getList } from "../../redux/actions";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 function Card() {
   const baseURL = "https://pokeapi.co/api/v2/";
@@ -51,7 +52,9 @@ function Card() {
         <div>
           {pokeList.map((pokemon) => (
             <div key={pokemon.id}>
-              <h2>{pokemon.name}</h2>
+              <Link to={`/detail/${pokemon.id}`}>
+                <h2>{pokemon.name}</h2>
+              </Link>
               <img src={pokemon.sprites.front_default} alt="pokemon" />
             </div>
           ))}
