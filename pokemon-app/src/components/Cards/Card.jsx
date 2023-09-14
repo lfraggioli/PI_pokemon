@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getList } from "../../redux/actions";
+import { getList, getNextPage, getPreviousPage } from "../../redux/actions";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -8,11 +8,14 @@ function Card() {
   const baseURL = "https://pokeapi.co/api/v2/";
   const pokeList = useSelector((state) => state.pokeList);
   const dispatch = useDispatch();
+  const currentPage = useSelector((state) => state.currentPage); // Agrega currentPage
+
   const [searchValue, setSearchValue] = useState("");
   const [searchedPokemon, setSearchedPokemon] = useState(null);
+
   useEffect(() => {
-    dispatch(getList());
-  }, [dispatch]);
+    dispatch(getList(currentPage));
+  }, [dispatch, currentPage]);
 
   const handleSearchChange = (e) => {
     setSearchValue(e.target.value);
@@ -33,6 +36,12 @@ function Card() {
     setSearchValue("");
     setSearchedPokemon(null);
   };
+  const loadPreviousPage = () => {
+    dispatch(getPreviousPage());
+  };
+  const loadNextPage = () => {
+    dispatch(getNextPage());
+  };
 
   return (
     <>
@@ -40,10 +49,13 @@ function Card() {
       <button onClick={handleSearch}>Buscar</button>
       <button onClick={clearSearch}>Borrar búsqueda</button>
 
+      {/* Botón para cargar la siguiente página */}
       {/* Mostrar el Pokémon buscado si se encuentra */}
       {searchedPokemon && searchValue !== "" && (
         <div key={searchedPokemon.id}>
-          <h2>{searchedPokemon.name}</h2>
+          <Link to={`/detail/${searchedPokemon.id}`}>
+            <h2>{searchedPokemon.name}</h2>
+          </Link>
           <img src={searchedPokemon.sprites.front_default} alt="pokemon" />
         </div>
       )}
@@ -60,6 +72,8 @@ function Card() {
           ))}
         </div>
       )}
+      <button onClick={loadPreviousPage}>ANTERIOR</button>
+      <button onClick={loadNextPage}>SIGUIENTE</button>
     </>
   );
 }
