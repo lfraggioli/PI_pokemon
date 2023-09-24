@@ -1,11 +1,12 @@
 import React from "react";
-import Card from "../Cards/Card";
+import Cards from "../Cards/Cards";
+import { Container } from "./styles";
 
 export const Homepage = () => {
   return (
-    <div>
+    <Container>
       <h1>Hola</h1>
-      <Card />
-    </div>
+      <Cards />
+    </Container>
   );
 };

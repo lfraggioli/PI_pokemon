@@ -1,0 +1,33 @@
+/* Hero.module.css */
+
+.hero-container {
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* Utiliza un import para la imagen de fondo */
+  background-image: url('../../assets/background.png');
+ 
+}
+
+.hero-content {
+  text-align: center;
+ 
+}
+
+.hero-button {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-button:hover {
+  background-color: #0056b3;
+}
+

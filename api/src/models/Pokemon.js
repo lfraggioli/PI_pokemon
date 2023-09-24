@@ -17,7 +17,7 @@ module.exports = (sequelize) => {
     },
     image: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: true,
     },
     hp: {
       type: DataTypes.INTEGER,
@@ -30,6 +30,10 @@ module.exports = (sequelize) => {
     defense: {
       type: DataTypes.INTEGER,
       allowNull: false,
+    },
+    origen: {
+      type: DataTypes.STRING,
+      defaultValue: "local",
     },
   });
 };

@@ -4,28 +4,52 @@ import {
   GET_NEXT,
   GET_PREVIOUS,
   SET_CURRENT_PAGE,
+  CREATE_POKEMON,
+  SET_POKEMON_TYPES,
+  FILTER_POKEMON_BY_TYPE,
 } from "./actionTypes";
 const baseURL = "https://pokeapi.co/api/v2/";
 
-export const getList = (page, limit = 12) => {
+export const getPokemons = () => {
+  const endpoint = "http://localhost:3001/pokemons";
   return async (dispatch) => {
     try {
-      let calc = (page - 1) * limit;
-      const response = await axios(
-        `${baseURL}pokemon?limit=${limit}&offset=${calc}`
-      );
-      const dataRes = response.data;
-      const pokeArrayOfPromises = dataRes.results.map(async (pokemon) => {
-        const response = await axios(pokemon.url);
-        const data = response.data;
-        return data;
-      });
-      const data = await Promise.all(pokeArrayOfPromises);
+      const { data } = await axios.get(endpoint);
+
       return dispatch({
         type: GET_LIST,
         payload: data,
-        currentPage: page,
-        itemsPerPage: limit,
+      });
+    } catch (error) {
+      return window.alert("Error", error);
+    }
+  };
+};
+
+// Supongo que tienes definidas las constantes FILTER_POKEMON_BY_TYPE y baseURL
+
+export const filterByType = (typeSelected) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios(`${baseURL}pokemon?limit=1000&offset=0`);
+      const dataRes = response.data;
+
+      const filteredPokemon = await Promise.all(
+        dataRes.results.map(async (pokemon) => {
+          const response = await axios.get(pokemon.url);
+          const data = response.data;
+          return data; // Retorna el detalle del Pokémon
+        })
+      );
+
+      // Ahora, puedes realizar el filtrado en el resultado filtrado por tipo
+      const filteredByType = filteredPokemon.filter((pokemon) =>
+        pokemon.types.some((type) => type.type.name === typeSelected)
+      );
+
+      dispatch({
+        type: FILTER_POKEMON_BY_TYPE,
+        payload: filteredByType, // Envía los Pokémon filtrados por tipo
       });
     } catch (error) {
       console.log(error);
@@ -34,30 +58,27 @@ export const getList = (page, limit = 12) => {
 };
 
 export const getNextPage = () => {
-  return async (dispatch, getState) => {
+  const endpoint = "http://localhost:3001/pokemon/next";
+  return async (dispatch) => {
     try {
-      const { currentPage } = getState();
-      const limit = 12;
-      const nextPage = currentPage + 1; // Calcular la página siguiente
-      const offset = (nextPage - 1) * limit;
-
-      const response = await axios(
-        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
-      );
-      const { data } = response;
-      const pokeArrayOfPromises = data.results.map(async (pokemon) => {
-        const pokemonResponse = await axios(pokemon.url);
-
-        return pokemonResponse.data;
-      });
-      const nextData = await Promise.all(pokeArrayOfPromises);
-      dispatch({
+      const { data } = await axios(endpoint);
+      return dispatch({
         type: GET_NEXT,
-        payload: nextData,
+        payload: data,
       });
-      dispatch({
-        type: SET_CURRENT_PAGE,
-        payload: nextPage,
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+export const getPreviousPage = () => {
+  const endpoint = "http://localhost:3001/pokemon/previous";
+  return async (dispatch) => {
+    try {
+      const { data } = await axios(endpoint);
+      return dispatch({
+        type: GET_PREVIOUS,
+        payload: data,
       });
     } catch (error) {
       console.log(error);
@@ -65,38 +86,35 @@ export const getNextPage = () => {
   };
 };
 
-export const getPreviousPage = () => {
-  return async (dispatch, getState) => {
+export const fetchPokemonTypes = () => async (dispatch) => {
+  try {
+    const response = await axios.get("https://pokeapi.co/api/v2/type");
+    const data = response.data;
+
+    // Extraer los nombres de los tipos de los datos de la API
+    const typeNames = data.results.map((type) => type.name);
+
+    dispatch({
+      type: SET_POKEMON_TYPES,
+      payload: typeNames,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
+export const addPokemon = (formData) => {
+  return async (dispatch) => {
     try {
-      const { currentPage } = getState();
-      const limit = 12;
-      const previousPage = currentPage - 1; // Calcular la página anterior
-      if (previousPage <= 0) {
-        // No retrocedas más allá de la página 1
-        return;
-      }
-      const offset = (previousPage - 1) * limit;
-
-      const response = await axios(
-        `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
+      const response = await axios.post(
+        "http://localhost:3001/pokemons",
+        formData
       );
-      const { data } = response;
-      const pokeArrayOfPromises = data.results.map(async (pokemon) => {
-        const pokemonResponse = await axios(pokemon.url);
-        return pokemonResponse.data;
-      });
-      const previousData = await Promise.all(pokeArrayOfPromises);
-
       dispatch({
-        type: GET_PREVIOUS,
-        payload: previousData,
-      });
-      dispatch({
-        type: SET_CURRENT_PAGE,
-        payload: previousPage,
+        type: CREATE_POKEMON,
+        payload: response.data,
       });
     } catch (error) {
-      console.log(error);
+      console.log("No se ha podido agregar el Pokemon.  ", error);
     }
   };
 };

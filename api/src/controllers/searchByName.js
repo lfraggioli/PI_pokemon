@@ -1,6 +1,7 @@
 const axios = require("axios");
 const { Pokemon, Type } = require("../db");
-const urlId = "https://pokeapi.co/api/v2/pokemon/";
+const baseURL = "https://pokeapi.co/api/v2/";
+const urlID = "https://pokeapi.co/api/v2/pokemon";
 const validarNombre = (name) => {
   if (typeof name === "string") {
     return name.toLowerCase();
@@ -18,9 +19,9 @@ const renombrar = (name) => {
 
   return name.charAt(0).toUpperCase() + name.slice(1);
 };
-const handlerGetPokemonById = async (url, id) => {
+const handlerGetPokemonByName = async (url, name) => {
   try {
-    const { data } = await axios.get(`${url}/${id}`);
+    const { data } = await axios.get(`${url}/${name}`);
     const i = data;
     return {
       id: i.id,
@@ -30,41 +31,22 @@ const handlerGetPokemonById = async (url, id) => {
       hp: i.stats[0].base_stat,
       attack: i.stats[1].base_stat,
       defense: i.stats[2].base_stat,
+      speed: i.stats[5].base_stat,
+      height: i.height,
+      weight: i.weight,
     };
   } catch (error) {
     console.log(error);
   }
 };
-const handlerGetPokemonByIdDB = async (id) => {
+const getPokemonByName = async (req, res) => {
   try {
-    console.log(id);
-    const pokemonDB = await Pokemon.findOne({
-      where: { name: id },
-      include: {
-        model: Type,
-        attributes: ["name"],
-      },
-    });
-    return {
-      id: pokemonDB.id,
-      name: pokemonDB.name,
-      image: pokemonDB.image,
-      types: pokemonDB.Types.map((e) => renombrar(e.name)),
-      hp: pokemonDB.hp,
-      attack: pokemonDB.attack,
-      defense: pokemonDB.defense,
-    };
-  } catch (error) {
-    console.log(error);
-  }
-};
-const getPokemonById = async (req, res) => {
-  try {
-    const id = validarNombre(req.params.id);
-    const pokemon = await handlerGetPokemonById(urlId, id);
+    const { name } = validarNombre(req.query);
+    console.log(name);
+    const pokemon = await handlerGetPokemonByName(urlID, name);
 
     if (!pokemon) {
-      const pokemonDB = await handlerGetPokemonByIdDB(id);
+      const pokemonDB = await handlerGetPokemonByNameDB(name);
 
       if (!pokemonDB) {
         res.status(404).json({
@@ -77,8 +59,8 @@ const getPokemonById = async (req, res) => {
 
     return res.json(pokemon);
   } catch (error) {
-    console.log(error);
+    res.status(500).json({ message: error });
   }
 };
 
-module.exports = getPokemonById;
+module.exports = { getPokemonByName };

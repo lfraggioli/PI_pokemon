@@ -22,7 +22,17 @@ const addPokemon = async (req, res) => {
     await newPokemon.addTypes(instancia);
     res.status(200).json(newPokemon);
   } catch (error) {
-    res.status(500).json({ message: error });
+    if (error.name === "SequelizeValidationError") {
+      // Handle Sequelize validation errors
+      res
+        .status(400)
+        .json({ error: "Error de validación", details: error.errors });
+    } else {
+      // Handle other errors
+      res
+        .status(500)
+        .json({ error: "Error interno del servidor", details: error.message });
+    }
   }
 };
 

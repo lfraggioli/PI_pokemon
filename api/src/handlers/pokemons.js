@@ -1,23 +1,23 @@
 const axios = require("axios");
 const { Pokemon, Type } = require("../db");
-const urlId = "https://pokeapi.co/api/v2/pokemon/";
-const validarNombre = (name) => {
-  if (typeof name === "string") {
-    return name.toLowerCase();
-  }
-  return name;
+
+const handlerGetPokemonAPI = (pokemones) => {
+  const pokemon = pokemones.map(async (p) => {
+    const { data } = await axios(p.url);
+    const prop = data;
+    return {
+      id: prop.id,
+      name: prop.name,
+      types: prop.types.map((t) => t.type.name),
+      image: prop.sprites.front_default,
+      hp: prop.stats[0].base_stat,
+      attack: prop.stats[1].base_stat,
+      defense: prop.stats[2].base_stat,
+    };
+  });
+  return pokemon;
 };
 
-const renombrar = (name) => {
-  if (Array.isArray(name)) {
-    const newNameArray = name.map((type) => {
-      return type.charAt(0).toUpperCase() + type.slice(1);
-    });
-    return newNameArray;
-  }
-
-  return name.charAt(0).toUpperCase() + name.slice(1);
-};
 const handlerGetPokemonById = async (url, id) => {
   try {
     const { data } = await axios.get(`${url}/${id}`);
@@ -30,12 +30,15 @@ const handlerGetPokemonById = async (url, id) => {
       hp: i.stats[0].base_stat,
       attack: i.stats[1].base_stat,
       defense: i.stats[2].base_stat,
+      speed: i.stats[5].base_stat,
+      height: i.height,
+      weight: i.weight,
     };
   } catch (error) {
     console.log(error);
   }
 };
-const handlerGetPokemonByIdDB = async (id) => {
+const handlerGetPokemonByNameDB = async (id) => {
   try {
     console.log(id);
     const pokemonDB = await Pokemon.findOne({
@@ -53,32 +56,16 @@ const handlerGetPokemonByIdDB = async (id) => {
       hp: pokemonDB.hp,
       attack: pokemonDB.attack,
       defense: pokemonDB.defense,
+      speed: pokemonDB.speed,
+      height: pokemonDB.height,
+      weight: pokemonDB.weight,
     };
   } catch (error) {
     console.log(error);
   }
 };
-const getPokemonById = async (req, res) => {
-  try {
-    const id = validarNombre(req.params.id);
-    const pokemon = await handlerGetPokemonById(urlId, id);
-
-    if (!pokemon) {
-      const pokemonDB = await handlerGetPokemonByIdDB(id);
-
-      if (!pokemonDB) {
-        res.status(404).json({
-          message: "No se a encontrado un Pokemon con ese Nombre o ID",
-        });
-      }
-
-      return res.json(pokemonDB);
-    }
-
-    return res.json(pokemon);
-  } catch (error) {
-    console.log(error);
-  }
+module.exports = {
+  handlerGetPokemonAPI,
+  handlerGetPokemonById,
+  handlerGetPokemonByNameDB,
 };
-
-module.exports = getPokemonById;
