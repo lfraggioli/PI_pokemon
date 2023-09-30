@@ -1,6 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addPokemon } from "../../redux/actions";
+import {
+  AddButton,
+  AddType,
+  Button,
+  ButtonContainer,
+  DeleteType,
+  FormContainer,
+  FormWrapper,
+  TypeDiv,
+} from "./styledForm";
 const AddPokemon = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -24,6 +34,12 @@ const AddPokemon = () => {
     // Actualiza el valor de un tipo en el formulario
     const updatedTypes = [...formData.types];
     updatedTypes[index] = value;
+    setFormData({ ...formData, types: updatedTypes });
+  };
+  const handleRemoveType = (index) => {
+    // Elimina un tipo del formulario
+    const updatedTypes = [...formData.types];
+    updatedTypes.splice(index, 1);
     setFormData({ ...formData, types: updatedTypes });
   };
   const isFormValid = () => {
@@ -56,53 +72,87 @@ const AddPokemon = () => {
     });
   };
   return (
-    <div>
-      <h2>Crear Pokémon</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Nombre:</label>
-        <input
-          type="text"
-          name="name"
-          value={formData.name}
-          onChange={handleInputChange}
-        />
-        <label>Ataque:</label>
-        <input
-          type="number" // Cambia el tipo a "number"
-          name="attack"
-          value={formData.attack}
-          onChange={handleInputChange}
-        />
-        <label>Defensa:</label>
-        <input
-          type="number" // Cambia el tipo a "number"
-          name="defense"
-          value={formData.defense}
-          onChange={handleInputChange}
-        />
-        <label>HP:</label>
-        <input
-          type="number"
-          name="hp"
-          value={formData.hp}
-          onChange={handleInputChange}
-        />
-        <label>Tipos:</label>
-        {formData.types.map((type, index) => (
-          <div key={index}>
-            <input
-              type="text"
-              value={type}
-              onChange={(e) => handleTypeChange(index, e.target.value)}
-            />
-          </div>
-        ))}
-        <button type="button" onClick={handleAddType}>
-          Agregar Tipo
-        </button>
-        <button type="submit">Agregar Pokemon a la BDD</button>
-      </form>
-    </div>
+    <>
+      <FormContainer>
+        <FormWrapper>
+          <h2>Create Pokémon</h2>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>Name</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label>Image</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.image}
+                onChange={handleInputChange}
+                placeholder="URL de imagen"
+              />
+            </div>
+            <div>
+              <label>Attack</label>
+              <input
+                type="number" // Cambia el tipo a "number"
+                name="attack"
+                value={formData.attack}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label>Defense</label>
+              <input
+                type="number" // Cambia el tipo a "number"
+                name="defense"
+                value={formData.defense}
+                onChange={handleInputChange}
+              />
+            </div>
+            <div>
+              <label>HP</label>
+              <input
+                type="number"
+                name="hp"
+                value={formData.hp}
+                onChange={handleInputChange}
+              />
+            </div>
+            <TypeDiv>
+              {" "}
+              <label>Tipos:</label>
+              {formData.types.map((type, index) => (
+                <TypeDiv key={index}>
+                  <AddType
+                    type="text"
+                    value={type}
+                    onChange={(e) => handleTypeChange(index, e.target.value)}
+                  />
+                  <DeleteType
+                    type="button"
+                    onClick={() => handleRemoveType(index)}
+                  >
+                    -
+                  </DeleteType>
+                </TypeDiv>
+              ))}
+              <AddButton type="button" onClick={handleAddType}>
+                +
+              </AddButton>
+            </TypeDiv>
+
+            <ButtonContainer>
+              <Button type="submit">Confirm</Button>
+            </ButtonContainer>
+          </form>
+        </FormWrapper>
+      </FormContainer>
+    </>
   );
 };
 

@@ -1,32 +1,93 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-const baseURL = "https://pokeapi.co/api/v2/";
+import { useParams, useNavigate } from "react-router-dom";
+import {
+  Icon,
+  Stats,
+  TypesTitle,
+  TypeDiv,
+  TypesContainer,
+  StatsTitle,
+  Container,
+  Name,
+  ID,
+  StatsContainer,
+  Div1,
+  Div2,
+  Container2,
+} from "./styledDetail";
+import { fetchPokemon } from "../../redux/actions";
 
 const Detail = () => {
   const { id } = useParams();
-  const [pokeDetail, setPokeDetail] = useState({});
-  useEffect(() => {
-    axios(`${baseURL}pokemon/${id}`).then((response) => {
-      const data = response.data;
-      const { name, sprites } = data;
-      const { front_default } = sprites;
-      const pokeData = {
-        name,
-        sprites: { front_default },
-      };
+  const [pokeDetail, setPokeDetail] = useState({ types: [] });
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    fetchPokemon(id).then((pokeData) => {
       setPokeDetail(pokeData);
     });
   }, [id]);
 
+  const handleNext = () => {
+    const nextId = parseInt(id) + 1;
+    navigate(`/detail/${nextId}`);
+    fetchPokemon(nextId).then((pokeData) => {
+      setPokeDetail(pokeData);
+    });
+  };
+
+  const handlePrevious = () => {
+    const previousId = parseInt(id) - 1;
+    navigate(`/detail/${previousId}`);
+    fetchPokemon(previousId).then((pokeData) => {
+      setPokeDetail(pokeData);
+    });
+  };
+
   return (
-    <>
-      {pokeDetail.name && <h1>{pokeDetail.name}</h1>}
-      {pokeDetail.sprites && (
-        <img srcSet={pokeDetail.sprites.front_default} alt="pokemon sprite" />
-      )}
-    </>
+    <Container2>
+      <Container>
+        <Div1>
+          {pokeDetail.name && <Name>{pokeDetail.name}</Name>}{" "}
+          <div>{pokeDetail.id && <ID>Pokemon #{pokeDetail.id}</ID>}</div>
+          <StatsContainer>
+            <StatsTitle>STATS</StatsTitle>
+            <Stats>
+              {pokeDetail.hp && <p>HP: {pokeDetail.hp}</p>}
+              {pokeDetail.attack && <p>Attack: {pokeDetail.attack}</p>}
+              {pokeDetail.defense && <p>Defense: {pokeDetail.defense}</p>}
+              {pokeDetail.speed && <p>Speed: {pokeDetail.speed}</p>}
+              {pokeDetail.weight && <p>weight: {pokeDetail.weight}</p>}
+              {pokeDetail.height && <p>height: {pokeDetail.height}</p>}
+            </Stats>
+          </StatsContainer>
+          <TypesTitle>Types</TypesTitle>
+          <TypesContainer>
+            {pokeDetail.types && (
+              <div>
+                {pokeDetail.types.map((type, index) => (
+                  <TypeDiv key={index} type={type}>
+                    {type}
+                  </TypeDiv>
+                ))}
+              </div>
+            )}
+          </TypesContainer>
+        </Div1>
+        <Div2>
+          {pokeDetail.sprites && (
+            <Icon
+              srcSet={pokeDetail.sprites.front_default}
+              alt="pokemon sprite"
+            />
+          )}
+        </Div2>
+      </Container>
+      <div>
+        <button onClick={handlePrevious}>Anterior</button>
+        <button onClick={handleNext}>Siguiente</button>
+      </div>
+    </Container2>
   );
 };
 

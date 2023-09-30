@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getNextPage, getPokemons, getPreviousPage } from "../../redux/actions";
 import Pagination from "./Pagination";
 import { Link } from "react-router-dom";
-import { Box, ContentWrapper } from "./styles/styledCards";
+import styled from "styled-components";
+import { Box } from "./styles/styledCards";
 import PokemonCard from "./Card";
-import { Background } from "../Home/styles";
 
-function PokemonList() {
-  const pokeList = useSelector((state) => state.pokeList);
+function PokemonDB() {
+  const myPokemons = useSelector((state) => state.myPokemons);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPokemons());
@@ -24,19 +24,14 @@ function PokemonList() {
 
   return (
     <>
-      <ContentWrapper>
-        <Box>
-          {pokeList.map((pokemon) => (
-            <PokemonCard key={pokemon.id} pokemon={pokemon} />
-          ))}
-        </Box>
-        <Pagination
-          onPreviousPage={loadPreviousPage}
-          onNextPage={loadNextPage}
-        />
-      </ContentWrapper>
+      <Box>
+        {myPokemons.map((pokemon) => (
+          <PokemonCard key={pokemon.id} pokemon={pokemon} />
+        ))}
+      </Box>
+      <Pagination onPreviousPage={loadPreviousPage} onNextPage={loadNextPage} />
     </>
   );
 }
 
-export default PokemonList;
+export default PokemonDB;

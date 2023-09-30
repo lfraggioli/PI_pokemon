@@ -1,9 +1,13 @@
 export const GET_LIST = "GET_LIST";
 export const GET_NEXT = "GET_NEXT";
-export const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 export const GET_PREVIOUS = "GET_PREVIOUS";
 export const CREATE_POKEMON = "CREATE_POKEMON";
-export const FILTRAR_ORIGEN = "FILTRAR_ORIGEN";
+export const GET_ALL = "GET_ALL";
 export const ALL_POKEMON = "ALL_POKEMON";
-export const FILTER_POKEMON_BY_TYPE = "FILTER_POKEMON_BY_TYPE";
+export const FILTERTYPE = "FILTERTYPE";
 export const SET_POKEMON_TYPES = "SET_POKEMON_TYPES";
+export const SET_PAGINATION = "SET_PAGINATION";
+export const GET_SEARCH = "GET_SEARCH";
+export const GET_DB = "GET_DB";
+export const GET_SORTED = "GET_SORTED";
+export const SORT_POKE_LIST = "SORT_POKE_LIST";

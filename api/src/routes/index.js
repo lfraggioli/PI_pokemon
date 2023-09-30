@@ -13,10 +13,12 @@ const getPokemonById = require("../controllers/getPokemonById");
 const getTypes = require("../controllers/getTypes");
 const addPokemon = require("../controllers/addPokemon");
 const { getPokemonByName } = require("../controllers/searchByName");
+const { getAll } = require("../controllers/getBackUpPokemons");
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 
 router.get("/pokemons", getPokemons);
+router.get("/pokemons/all", getAll);
 router.get("/pokemons/next", getNext);
 router.get("/pokemons/previous", getPrevious);
 router.get("/pokemons/name", getPokemonByName);

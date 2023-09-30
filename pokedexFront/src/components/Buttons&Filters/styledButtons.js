@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styled, { keyframes } from "styled-components";
 
 // Animación para mostrar y ocultar la barra de búsqueda
@@ -12,10 +11,23 @@ export const slideIn = keyframes`
 `;
 
 export const SearchBarContainer = styled.div`
+  position: absolute;
+  top: 20%;
+  margin-top: 2em;
+  margin-bottom: 1em;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+`;
+export const PageContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  animation: ${slideIn} 0.5s ease-in-out; /* Aplicamos la animación */
+  justify-content: flex-end;
+  left: 50%;
+  margin-top: 5em;
+  padding-top: 5em;
+  bottom: 0;
+  transform: translate(-50%);
+  position: absolute;
 `;
 
 export const SearchInput = styled.input`
@@ -29,20 +41,60 @@ export const SearchInput = styled.input`
   &:focus {
     width: 400px; /* Ancho expandido al hacer clic en el input */
   }
+  animation: ${slideIn} 0.5s ease-in-out; /* Aplicamos la animación */
 `;
 
 export const ButtonContainer = styled.div`
   display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  margin-top: 1em;
+  padding-top: 3em;
+  position: relative;
+`;
+
+export const PreviousButton = styled.button`
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+`;
+
+export const NextButton = styled.button`
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  &:hover {
+    background-color: #fff;
+    color: #000;
+  }
+  font-family: "Lato", sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
 `;
 
 export const SearchButton = styled.button`
   padding: 10px 20px;
+  top: 1em;
   background-color: #007bff;
   color: #fff;
   border: none;
-  border-radius: 5px 0 0 5px; /* Bordes redondeados solo en el lado izquierdo */
+  border-radius: 5px;
   cursor: pointer;
-  margin-right: 0; /* Eliminamos el margen derecho */
 `;
 
 export const ClearButton = styled.button`

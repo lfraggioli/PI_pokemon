@@ -27,7 +27,7 @@ const handlerGetPokemonByName = async (url, name) => {
       id: i.id,
       name: renombrar(i.name),
       types: i.types.map((e) => renombrar(e.type.name)),
-      image: i.sprites.other.dream_world.front_default,
+      image: i.sprites.front_default,
       hp: i.stats[0].base_stat,
       attack: i.stats[1].base_stat,
       defense: i.stats[2].base_stat,

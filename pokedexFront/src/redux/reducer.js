@@ -1,18 +1,28 @@
 import {
+  GET_ALL,
   CREATE_POKEMON,
-  FILTER_POKEMON_BY_TYPE,
+  FILTERTYPE,
   GET_LIST,
   GET_NEXT,
   GET_PREVIOUS,
-  SET_CURRENT_PAGE,
   SET_POKEMON_TYPES,
+  SET_PAGINATION,
+  SORT_POKE_LIST,
+  GET_SEARCH,
+  GET_DB,
+  GET_SORTED,
 } from "./actionTypes";
 
 const initialState = {
-  currentPage: 1,
+  allPokemon: [],
+  backUp: [],
   myPokemons: [],
   pokeList: [],
   types: [],
+  currentPage: 1,
+  itemsPerPage: 12,
+  searchResults: [],
+  filteredPokemon: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -28,17 +38,25 @@ function rootReducer(state = initialState, action) {
         ...state,
         types: action.payload,
       };
-    case FILTER_POKEMON_BY_TYPE:
+    case FILTERTYPE:
+      const filteredPokemon = state.allPokemon.filter((pokemon) =>
+        pokemon.types.includes(action.payload)
+      );
       return {
         ...state,
-        pokeList: action.payload,
+        filteredPokemon,
+      };
+    case GET_ALL:
+      return {
+        ...state,
+        allPokemon: action.payload,
+      };
+    case GET_DB:
+      return {
+        ...state,
+        myPokemons: [...state.myPokemons, action.payload],
       };
     case GET_LIST:
-      return {
-        ...state,
-        pokeList: action.payload,
-      };
-    case GET_PREVIOUS: // Maneja la acción GET_PREVIOUS para reemplazar la lista
       return {
         ...state,
         pokeList: action.payload,
@@ -48,11 +66,43 @@ function rootReducer(state = initialState, action) {
         ...state,
         pokeList: action.payload,
       };
-    case SET_CURRENT_PAGE:
+    case GET_PREVIOUS:
       return {
         ...state,
-        currentPage: action.payload,
+        pokeList: action.payload,
       };
+    case GET_SORTED:
+      return {
+        ...state,
+        orderedPokemon: action.payload,
+      };
+    case SET_PAGINATION:
+      return {
+        ...state,
+        currentPage: action.payload.page,
+        itemsPerPage: action.payload.itemsPerPage,
+      };
+    case SORT_POKE_LIST:
+      let sortedPokemon = state.allPokemon.slice().sort((a, b) => {
+        if (action.payload === "asc") {
+          if (a.name > b.name) {
+            return 1;
+          }
+          if (b.name > a.name) {
+            return -1;
+          }
+          return 0;
+        } else {
+          if (a.name > b.name) {
+            return -1;
+          }
+          if (b.name > a.name) {
+            return 1;
+          }
+          return 0;
+        }
+      });
+      return { ...state, allPokemon: sortedPokemon };
     default:
       return state;
   }
