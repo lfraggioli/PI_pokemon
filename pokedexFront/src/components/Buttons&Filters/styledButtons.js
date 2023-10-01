@@ -19,13 +19,16 @@ export const SearchBarContainer = styled.div`
   transform: translate(-50%, -50%);
   z-index: 2;
 `;
+export const ParentContainer = styled.div`
+  position: relative;
+  height: 100vh;
+`;
+
 export const PageContainer = styled.div`
   display: flex;
-  justify-content: flex-end;
   left: 50%;
-  margin-top: 5em;
-  padding-top: 5em;
-  bottom: 0;
+
+  padding-bottom: 1em;
   transform: translate(-50%);
   position: absolute;
 `;
@@ -48,8 +51,9 @@ export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.5em;
-  margin-top: 1em;
   padding-top: 3em;
+  top: 50%;
+  bottom: 0;
   position: relative;
 `;
 

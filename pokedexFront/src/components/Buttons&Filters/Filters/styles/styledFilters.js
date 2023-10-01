@@ -9,7 +9,7 @@ export const Container = styled.div`
   margin-bottom: 2em;
 `;
 const colorButton = {
-  rgba: "rgba(0, 0, 0, 0.2)",
+  rgba: "rgba(0, 0, 0, 0.5)",
 };
 const typeColors = {
   normal: "#A8A77A",

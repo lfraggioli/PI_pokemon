@@ -7,6 +7,10 @@ import { Link } from "react-router-dom";
 import { Box, ContentWrapper } from "./styles/styledCards";
 import PokemonCard from "./Card";
 import { Background } from "../Home/styles";
+import {
+  PageContainer,
+  ParentContainer,
+} from "../Buttons&Filters/styledButtons";
 
 function PokemonList() {
   const pokeList = useSelector((state) => state.pokeList);
@@ -30,10 +34,14 @@ function PokemonList() {
             <PokemonCard key={pokemon.id} pokemon={pokemon} />
           ))}
         </Box>
-        <Pagination
-          onPreviousPage={loadPreviousPage}
-          onNextPage={loadNextPage}
-        />
+        <ParentContainer>
+          <PageContainer>
+            <Pagination
+              onPreviousPage={loadPreviousPage}
+              onNextPage={loadNextPage}
+            />{" "}
+          </PageContainer>
+        </ParentContainer>
       </ContentWrapper>
     </>
   );

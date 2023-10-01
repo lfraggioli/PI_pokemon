@@ -18,6 +18,31 @@ const handlerGetPokemonAPI = (pokemones) => {
   return pokemon;
 };
 
+const handlerGetPokemonDB = async () => {
+  const PokemonDB = await Pokemon.findAll({
+    // incluyendo atributos nombre de la tabla Tipos
+    include: {
+      model: Type,
+    },
+  });
+
+  const getAllPokemonDB = PokemonDB.map((e) => {
+    return {
+      id: e.id,
+      name: e.name,
+      image: e.image,
+      types: e.Types.map((e) => renombrar(e.name)),
+      hp: e.hp,
+      attack: e.attack,
+      defense: e.defense,
+      speed: e.speed,
+      height: e.height,
+      weight: e.weight,
+    };
+  });
+  return getAllPokemonDB;
+};
+
 const handlerGetPokemonById = async (url, id) => {
   try {
     const { data } = await axios.get(`${url}/${id}`);
@@ -68,4 +93,5 @@ module.exports = {
   handlerGetPokemonAPI,
   handlerGetPokemonById,
   handlerGetPokemonByNameDB,
+  handlerGetPokemonDB,
 };

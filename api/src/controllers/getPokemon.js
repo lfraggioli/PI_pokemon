@@ -1,5 +1,8 @@
 const axios = require("axios");
-const { handlerGetPokemonAPI } = require("../handlers/pokemons");
+const {
+  handlerGetPokemonAPI,
+  handlerGetPokemonDB,
+} = require("../handlers/pokemonGetters");
 const { Type, Pokemon } = require("../db");
 
 const url = "https://pokeapi.co/api/v2/pokemon?limit=12&offset=0";
@@ -41,8 +44,7 @@ const getDBPokemons = async (req, res) => {
         // Agrega otros campos según sea necesario
       };
     });
-
-    return res.status(200).json(formattedPokemons);
+    return res.status(201).json(formattedPokemons);
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: error.message });

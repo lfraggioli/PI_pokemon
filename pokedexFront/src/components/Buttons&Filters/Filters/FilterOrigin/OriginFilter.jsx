@@ -4,7 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import PokemonList from "../../../Cards/PokemonList";
 import PokemonDB from "../../../Cards/PokemonDB";
 import { getDBPokemons, getPokemons } from "../../../../redux/actions";
-import { ButtonContainer } from "../../styledButtons";
+import {
+  ButtonContainer,
+  OriginButton,
+  OriginContainer,
+  OriginResults,
+  ParentContainer,
+} from "./styles";
 
 export const OriginFilter = () => {
   const dispatch = useDispatch();
@@ -26,15 +32,23 @@ export const OriginFilter = () => {
   };
 
   return (
-    
-    <ButtonContainer>
-      <button onClick={handleApiClick} value="api">
-        API
-      </button>
-      <button onClick={handleDbClick} value="db">
-        DB
-      </button>
-      {origin === "api" ? <PokemonList /> : <PokemonDB />}
-    </ButtonContainer>
+    <>
+      <ParentContainer>
+        <OriginContainer>
+          <ButtonContainer>
+            <OriginButton onClick={handleApiClick} value="api">
+              API
+            </OriginButton>
+            <OriginButton onClick={handleDbClick} value="db">
+              DB
+            </OriginButton>
+          </ButtonContainer>{" "}
+        </OriginContainer>
+      </ParentContainer>
+      <OriginResults>
+        {" "}
+        {origin === "api" ? <PokemonList /> : <PokemonDB />}
+      </OriginResults>
+    </>
   );
 };

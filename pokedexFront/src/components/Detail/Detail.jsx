@@ -16,6 +16,12 @@ import {
   Container2,
 } from "./styledDetail";
 import { fetchPokemon } from "../../redux/actions";
+import {
+  ButtonContainer,
+  NextButton,
+  PageContainer,
+  PreviousButton,
+} from "../Buttons&Filters/styledButtons";
 
 const Detail = () => {
   const { id } = useParams();
@@ -83,10 +89,12 @@ const Detail = () => {
           )}
         </Div2>
       </Container>
-      <div>
-        <button onClick={handlePrevious}>Anterior</button>
-        <button onClick={handleNext}>Siguiente</button>
-      </div>
+      <PageContainer>
+        <ButtonContainer>
+          <PreviousButton onClick={handlePrevious}>Anterior</PreviousButton>
+          <NextButton onClick={handleNext}>Siguiente</NextButton>
+        </ButtonContainer>
+      </PageContainer>
     </Container2>
   );
 };

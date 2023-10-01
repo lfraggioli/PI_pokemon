@@ -10,12 +10,13 @@ export const Lista = styled.ul`
 `;
 
 export const ItemLi = styled.li`
-  font-size: 1.2em;
-  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  text-shadow: 1px 2px 2px black;
+  font-family: "Roboto", sans-serif;
   color: white;
   cursor: pointer;
   font-weight: 900;
-  text-transform: lowercase;
+  text-transform: uppercase;
   padding: 0.5em;
   margin-left: 1em;
   border-radius: 7px;
@@ -23,6 +24,7 @@ export const ItemLi = styled.li`
 
   &:hover {
     background-color: #831010;
+    text-shadow: 1px 2px 2px #d53141;
   }
 `;
 

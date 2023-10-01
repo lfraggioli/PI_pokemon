@@ -1,7 +1,17 @@
 const axios = require("axios");
 const { Pokemon, Type } = require("../db");
 
-const addPokemon = async (req, res) => {
+const handlerCreatePokemon = async (
+  name,
+  image,
+  hp,
+  attack,
+  defense,
+  // weight,
+  // speed,
+  // height,
+  types
+) => {
   try {
     const { name, image, hp, attack, defense, types } = req.body;
     const newPokemon = await Pokemon.create({
@@ -36,4 +46,4 @@ const addPokemon = async (req, res) => {
   }
 };
 
-module.exports = addPokemon;
+module.exports = { handlerCreatePokemon };

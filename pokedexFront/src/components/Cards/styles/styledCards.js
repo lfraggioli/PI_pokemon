@@ -4,8 +4,8 @@ export const Box = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 1em;
   margin-top: 1em;
-  padding: 2.5em;
-  margin-bottom: 1.5em;
+  padding: 2rem;
+  margin-bottom: 1em;
   justify-items: center;
   align-items: center;
   justify-content: center;
@@ -54,10 +54,13 @@ export const CardContainer = styled.div`
   align-items: center;
   width: 300px;
   height: 400px;
-  background-color: #b3b3b3;
+  background: linear-gradient(
+    90deg,
+    rgba(235, 244, 245, 0.6) 0%,
+    rgba(181, 198, 224, 0.6) 100%
+  );
   border-radius: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
   transition: transform 0.2s ease-in-out;
 
   &:hover {
@@ -97,9 +100,9 @@ export const Name = styled.h1`
   margin-top: 0;
   font-size: 1.7em;
   font-weight: 900;
-  -webkit-text-stroke: 0.5px black;
+  color: #e8f1ff;
+  -webkit-text-stroke: 0.05px #000;
   text-align: center;
-  color: white;
   text-transform: uppercase;
 `;
 
@@ -113,7 +116,7 @@ export const StatsContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 1px;
+  margin-top: 15px;
 `;
 
 export const Stat = styled.div`
@@ -121,11 +124,14 @@ export const Stat = styled.div`
   flex-direction: row;
   align-items: left;
   top: 0;
-  line-height: 1.2em;
-  font-family: "Poppins", sans-serif;
-  padding-right: 1em;
-  font-weight: bold;
-  text-transform: capitalize;
+  line-height: 0.5em;
+  color: #393939;
+  font-family: "Roboto", monospace;
+  font-size: 2em;
+  -webkit-text-stroke: 0.5px #393939;
+  text-shadow: 0.5px 0.5px 0.5px #e8f1ff;
+  font-weight: 900;
+  text-transform: uppercase;
 `;
 
 export const StatValue = styled.span`

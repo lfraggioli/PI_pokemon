@@ -1,31 +1,30 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import { NavWrapper } from "./styledSidebar";
+import { NavItem, NavList, NavWrapper } from "./styledSidebar";
 
 const SideBar = () => {
   const location = useLocation();
   return (
     <NavWrapper>
-      <h2>SideBar</h2>
-      <ul>
+      <NavList>
         {location.pathname !== "/types" && (
           <Link to="/types">
-            <li>Filtrar por tipos</li>
+            <NavItem>Filtrar por tipos</NavItem>
           </Link>
         )}
 
         {location.pathname !== "/origin" && (
           <Link to="/origin">
-            <li>Filtrar por origen</li>
+            <NavItem>Filtrar por origen</NavItem>
           </Link>
         )}
         {location.pathname !== "/order" && (
           <Link to="/order">
-            <li>Ordenar y filtrar</li>
+            <NavItem>Ordenar y filtrar</NavItem>
           </Link>
         )}
-      </ul>
+      </NavList>
     </NavWrapper>
   );
 };

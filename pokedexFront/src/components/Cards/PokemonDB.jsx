@@ -1,7 +1,12 @@
 import React, { useEffect } from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { getNextPage, getPokemons, getPreviousPage } from "../../redux/actions";
+import {
+  getDBPokemons,
+  getNextPage,
+  getPokemons,
+  getPreviousPage,
+} from "../../redux/actions";
 import Pagination from "./Pagination";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -12,7 +17,7 @@ function PokemonDB() {
   const myPokemons = useSelector((state) => state.myPokemons);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(getPokemons());
+    dispatch(getDBPokemons());
   }, [dispatch]);
   const loadPreviousPage = () => {
     dispatch(getPreviousPage());

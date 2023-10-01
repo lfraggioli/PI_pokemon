@@ -32,11 +32,17 @@ export const Container = styled.div`
   justify-content: space-between;
   width: 700px;
   height: 500px;
-  background-color: rgba(0, 0, 0, 0.5);
+  background: linear-gradient(
+    90deg,
+    rgba(235, 244, 245, 0.7) 0%,
+    rgba(181, 198, 224, 0.8) 100%
+  );
   left: 50%;
-  top: 5em;
+  top: 4em;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.4);
+  margin-bottom: 1.5em;
   transform: translate(-50%);
-  border-radius: 10px;
+  border-radius: 15px;
 `;
 
 export const Container2 = styled.div`
@@ -80,8 +86,9 @@ export const Name = styled.div`
   font-size: 3em;
   left: 10%;
   top: 5%;
-  color: white;
-  -webkit-text-stroke: 1.2px #000;
+  color: #f6bd20;
+  text-shadow: 1px 1px 2px black;
+  -webkit-text-stroke: 1px #000;
   position: absolute;
 `;
 export const ID = styled.div`
@@ -89,24 +96,25 @@ export const ID = styled.div`
   text-align: left;
   left: 10%;
   bottom: 5%;
-  font-size: 25px;
-  color: rgba(134, 126, 126, 0);
-
+  font-size: 30px;
+  color: transparent;
   width: 100%;
-  -webkit-text-stroke: 1.5px black;
+  -webkit-text-stroke: 1.1px #393939;
 `;
 
 export const StatsTitle = styled.div`
   position: relative;
-  font-size: 1.5em;
+  font-size: 1.6em;
 
   text-align: left;
-  bottom: 0;
+
   line-height: 0;
   width: 100%;
   text-transform: uppercase;
-  font-family: var(--font-dela-gothic-one);
-  color: var(--color-black);
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  color: #fffeff;
+  -webkit-text-stroke: 1px #000;
 `;
 
 export const StatsContainer = styled.div`
@@ -118,7 +126,7 @@ export const StatsContainer = styled.div`
   top: 20%;
   margin-top: 1em;
   text-transform: uppercase;
-  font-family: var(--font-dela-gothic-one);
+
   color: var(--color-black);
   left: 10%;
 `;
@@ -126,7 +134,7 @@ export const Stats = styled.div`
   display: flex;
   flex-direction: column;
   position: absolute;
-  top: 1em;
+  top: 0.5em;
 
   line-height: 1em;
   font-size: 1.7em;
@@ -134,8 +142,7 @@ export const Stats = styled.div`
   text-transform: capitalize;
   font-family: "Roboto", monospace;
   font-weight: 800;
-  color: white;
-  -webkit-text-stroke: 1px #000;
+  color: #393939;
 `;
 
 export const typeColors = {
@@ -184,7 +191,7 @@ export const TypesContainer = styled.div`
 
   max-width: 100%;
   padding: 1em;
-  top: 63%;
+  top: 60%;
   left: 5%;
   align-items: left;
   justify-content: left;
@@ -192,12 +199,14 @@ export const TypesContainer = styled.div`
 
 export const TypesTitle = styled.div`
   position: absolute;
-  font-size: 1.1em;
-  bottom: 30%;
+  font-size: 1.6em;
+  bottom: 32%;
   left: 10%;
   text-align: left;
   width: 100%;
   text-transform: uppercase;
-  color: white;
-  font-family: var(--font-dela-gothic-one);
+  color: #fffeff;
+  -webkit-text-stroke: 1px #000;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
 `;

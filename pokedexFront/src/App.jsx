@@ -5,15 +5,14 @@ import { Homepage } from "./components/Home/Homepage";
 import LandingPage from "./components/Landing/Landing";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
-import PokemonList from "./components/Cards/PokemonList";
-import styled from "styled-components";
 import TypeFilter from "./components/Buttons&Filters/Filters/TypeFilter";
 import SideBar from "./components/Cards/Sidebar/Sidebar";
 import { useState } from "react";
-import { OriginFilter } from "./components/Buttons&Filters/Filters/FilterOrigin/OriginFilter";
 import Order from "./components/Buttons&Filters/Filters/Order/Order";
 import { About } from "./views/About/About";
 import List from "./views/List/List";
+import Origin from "./views/Origin";
+import Type from "./views/Filters";
 
 function App() {
   const { pathname } = useLocation();
@@ -25,6 +24,7 @@ function App() {
       {pathname === "/list" && <SideBar />}
       {pathname === "/types" && <SideBar />}
       {pathname === "/origin" && <SideBar />}
+      {pathname === "/order" && <SideBar />}
       <div>
         <Routes>
           <Route path="/" element={<LandingPage />} />
@@ -32,8 +32,8 @@ function App() {
           <Route path="/list" element={<List />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/create" element={<AddPokemon />} />
-          <Route path="/types" element={<TypeFilter />} />
-          <Route path="/origin" element={<OriginFilter />} />
+          <Route path="/types" element={<Type />} />
+          <Route path="/origin" element={<Origin />} />
           <Route path="/order" element={<Order />} />
           <Route path="/about" element={<About />} />
         </Routes>

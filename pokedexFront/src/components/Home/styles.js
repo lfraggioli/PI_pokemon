@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import background from "../../assets/List-bg.png";
+import background from "../../assets/body_bg.png";
 export const Container = styled.div`
   margin-top: 4em;
   display: flex;
@@ -18,16 +18,16 @@ export const Background = styled.div`
   background-position: center;
   overflow-y: auto;
   min-height: 100vh;
-  width: 100%;
   z-index: 0;
 `;
 
 export const ResultsContainer = styled.div`
   position: absolute; /* Agrega esta propiedad para posicionar el ResultsContainer */
   top: 5%; /* Establece la posición vertical */
-  margin-top: 1em;
+
   transform: translateY(10%); /* Centra verticalmente */
-  max-height: 1200px;
+  min-height: 100vh;
+  overflow: hidden;
   width: 100%;
   display: flex;
   justify-content: center;

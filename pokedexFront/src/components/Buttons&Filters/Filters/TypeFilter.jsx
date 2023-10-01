@@ -48,33 +48,31 @@ function TypeFilter() {
 
   return (
     <>
-      <Background>
-        <DivButton>
+      <DivButton>
+        <FilterButton
+          onClick={handleAllClick}
+          className={selectedType === "todos" ? "active" : ""}
+          type="todos"
+        >
+          <ButtonText>Todos</ButtonText>
+        </FilterButton>
+        {types.map((type) => (
           <FilterButton
-            onClick={handleAllClick}
-            className={selectedType === "todos" ? "active" : ""}
-            type="todos"
+            key={type}
+            onClick={() => handleTypeChange({ target: { value: type } })}
+            className={selectedType === type ? "active" : ""}
+            type={type}
           >
-            <ButtonText>Todos</ButtonText>
+            <ButtonText> {type}</ButtonText>
           </FilterButton>
-          {types.map((type) => (
-            <FilterButton
-              key={type}
-              onClick={() => handleTypeChange({ target: { value: type } })}
-              className={selectedType === type ? "active" : ""}
-              type={type}
-            >
-              <ButtonText> {type}</ButtonText>
-            </FilterButton>
-          ))}
-        </DivButton>
+        ))}
+      </DivButton>
 
-        <Container>
-          <div>
-            {selectedType !== "todos" ? <FilteredByType /> : <PokemonList />}{" "}
-          </div>
-        </Container>
-      </Background>
+      <Container>
+        <div>
+          {selectedType !== "todos" ? <FilteredByType /> : <PokemonList />}{" "}
+        </div>
+      </Container>
     </>
   );
 }

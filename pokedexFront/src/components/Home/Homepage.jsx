@@ -27,17 +27,19 @@ export const Homepage = () => {
   };
 
   return (
-    <Background>
-      <Container>
-        <SearchBarContainer>
-          <SearchBar onSearch={handleSearch} isLoading={isLoading} />{" "}
-          {/* Pasa isLoading como una prop al componente SearchBar */}
-        </SearchBarContainer>
+    <>
+      <Background>
+        <Container>
+          <SearchBarContainer>
+            <SearchBar onSearch={handleSearch} isLoading={isLoading} />{" "}
+            {/* Pasa isLoading como una prop al componente SearchBar */}
+          </SearchBarContainer>
 
-        <ResultsContainer>
-          <SearchResults searchResults={pokeSearch} />
-        </ResultsContainer>
-      </Container>
-    </Background>
+          <ResultsContainer>
+            <SearchResults searchResults={pokeSearch} />
+          </ResultsContainer>
+        </Container>
+      </Background>
+    </>
   );
 };

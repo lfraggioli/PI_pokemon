@@ -11,6 +11,7 @@ import {
   FormWrapper,
   TypeDiv,
 } from "./styledForm";
+import axios from "axios";
 const AddPokemon = () => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
@@ -21,6 +22,7 @@ const AddPokemon = () => {
     defense: 0,
     types: [],
   });
+  const [registro, setRegistro] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -45,6 +47,7 @@ const AddPokemon = () => {
   const isFormValid = () => {
     if (
       !formData.name ||
+      !formData.image ||
       !formData.hp ||
       !formData.attack ||
       !formData.defense
@@ -54,11 +57,18 @@ const AddPokemon = () => {
     }
     return true;
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (isFormValid()) {
-      // Realiza la solicitud al servidor solo si la validación es exitosa
-      dispatch(addPokemon(formData));
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3001/pokemons/db",
+        formData
+      );
+      if (data.message === "Registro exitoso") {
+        setRegistro(!registro);
+      }
+    } catch (error) {
+      window.alert("Ha ocurrido un error en el registro");
     }
     console.log(formData);
     //?Limpiar formulario 👇🏻
@@ -90,7 +100,7 @@ const AddPokemon = () => {
               <label>Image</label>
               <input
                 type="text"
-                name="name"
+                name="image"
                 value={formData.image}
                 onChange={handleInputChange}
                 placeholder="URL de imagen"

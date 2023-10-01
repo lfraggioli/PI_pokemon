@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import {
   Box,
   BoxItem,
+  ContentWrapper,
   Icon,
   PokeID,
   PokeName,
@@ -17,6 +18,7 @@ import {
   TypesContainer,
 } from "../../../Cards/styles/styledCards";
 import PokemonCard from "../../../Cards/Card";
+import { PageContainer, ParentContainer } from "../../styledButtons";
 
 const OrderedCards = ({ pokeList }) => {
   const dispatch = useDispatch();
@@ -40,16 +42,19 @@ const OrderedCards = ({ pokeList }) => {
   };
 
   return (
-    <div>
+    <ContentWrapper>
       <Box>
         {visiblePokemon.map((pokemon) => (
           <PokemonCard key={pokemon.id} pokemon={pokemon} />
         ))}
       </Box>
-
-      <button onClick={handleLoadLess}>Anterior</button>
-      <button onClick={handleLoadMore}>Siguiente</button>
-    </div>
+      <ParentContainer>
+        <PageContainer>
+          <button onClick={handleLoadLess}>Anterior</button>
+          <button onClick={handleLoadMore}>Siguiente</button>
+        </PageContainer>
+      </ParentContainer>
+    </ContentWrapper>
   );
 };
 

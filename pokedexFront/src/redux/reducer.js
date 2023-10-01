@@ -54,7 +54,7 @@ function rootReducer(state = initialState, action) {
     case GET_DB:
       return {
         ...state,
-        myPokemons: [...state.myPokemons, action.payload],
+        myPokemons: action.payload,
       };
     case GET_LIST:
       return {

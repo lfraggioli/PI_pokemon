@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getBackUpPokemons, sortPokeList } from "../../../../redux/actions";
 import {
-  getBackUpPokemons,
-  getPokemons,
-  getSorted,
-  sortPokeList,
-} from "../../../../redux/actions";
-import { Button, Buttons } from "./styledOrder";
-import PokemonList from "../../../Cards/PokemonList";
+  Button,
+  ButtonContainer,
+  Buttons,
+  OrderContainer,
+  ParentContainer,
+  Container,
+} from "./styledOrder";
 import OrderedCards from "./OrderedCards";
 
 const Order = () => {
@@ -24,18 +25,24 @@ const Order = () => {
   };
 
   return (
-    <div>
-      <Buttons>
-        <label>Ordenar por nombre: </label>
-        <Button value="asc" onClick={handleSortChange}>
-          Ascendente
-        </Button>
-        <Button value="desc" onClick={handleSortChange}>
-          Descendente
-        </Button>
-      </Buttons>
-      <OrderedCards pokeList={pokeList} />
-    </div>
+    <>
+      <ParentContainer>
+        <OrderContainer>
+          <ButtonContainer>
+            <label>Ordenar por nombre: </label>
+            <Button value="asc" onClick={handleSortChange}>
+              Ascendente
+            </Button>
+            <Button value="desc" onClick={handleSortChange}>
+              Descendente
+            </Button>
+          </ButtonContainer>
+        </OrderContainer>
+      </ParentContainer>
+      <Container>
+        <OrderedCards pokeList={pokeList} />
+      </Container>
+    </>
   );
 };
 
