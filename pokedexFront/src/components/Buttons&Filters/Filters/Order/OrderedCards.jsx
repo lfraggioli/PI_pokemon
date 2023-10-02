@@ -18,7 +18,12 @@ import {
   TypesContainer,
 } from "../../../Cards/styles/styledCards";
 import PokemonCard from "../../../Cards/Card";
-import { PageContainer, ParentContainer } from "../../styledButtons";
+import {
+  NextButton,
+  PageContainer,
+  ParentContainer,
+  PreviousButton,
+} from "../../styledButtons";
 
 const OrderedCards = ({ pokeList }) => {
   const dispatch = useDispatch();
@@ -50,8 +55,8 @@ const OrderedCards = ({ pokeList }) => {
       </Box>
       <ParentContainer>
         <PageContainer>
-          <button onClick={handleLoadLess}>Anterior</button>
-          <button onClick={handleLoadMore}>Siguiente</button>
+          <PreviousButton onClick={handleLoadLess}>Anterior</PreviousButton>
+          <NextButton onClick={handleLoadMore}>Siguiente</NextButton>
         </PageContainer>
       </ParentContainer>
     </ContentWrapper>

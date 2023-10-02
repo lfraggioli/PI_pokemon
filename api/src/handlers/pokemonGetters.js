@@ -9,7 +9,7 @@ const handlerGetPokemonAPI = (pokemones) => {
       id: prop.id,
       name: prop.name,
       types: prop.types.map((t) => t.type.name),
-      image: prop.sprites.front_default,
+      image: prop.sprites.other.home.front_default,
       hp: prop.stats[0].base_stat,
       attack: prop.stats[1].base_stat,
       defense: prop.stats[2].base_stat,
@@ -51,7 +51,7 @@ const handlerGetPokemonById = async (url, id) => {
       id: i.id,
       name: renombrar(i.name),
       types: i.types.map((e) => renombrar(e.type.name)),
-      image: i.sprites.other.dream_world.front_default,
+      image: i.sprites.other.home.front_default,
       hp: i.stats[0].base_stat,
       attack: i.stats[1].base_stat,
       defense: i.stats[2].base_stat,
@@ -67,7 +67,7 @@ const handlerGetPokemonByNameDB = async (id) => {
   try {
     console.log(id);
     const pokemonDB = await Pokemon.findOne({
-      where: { name: id },
+      where: { id },
       include: {
         model: Type,
         attributes: ["name"],

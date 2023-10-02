@@ -1,13 +1,13 @@
 import React from "react";
-import { Background } from "../components/Home/styles";
+import { Container } from "../components/Home/styles";
 import TypeFilter from "../components/Buttons&Filters/Filters/TypeFilter";
 
 const Type = () => {
   return (
     <div>
-      <Background>
+      <Container>
         <TypeFilter />
-      </Background>
+      </Container>
     </div>
   );
 };

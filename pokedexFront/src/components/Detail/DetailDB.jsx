@@ -15,7 +15,7 @@ import {
   Div2,
   Container2,
 } from "./styledDetail";
-import { fetchPokemon } from "../../redux/actions";
+import { fetchDBPokemon } from "../../redux/actions";
 import {
   ButtonContainer,
   NextButton,
@@ -29,26 +29,10 @@ const Detail = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetchPokemon(id).then((pokeData) => {
+    fetchDBPokemon(id).then((pokeData) => {
       setPokeDetail(pokeData);
     });
   }, [id]);
-
-  const handleNext = () => {
-    const nextId = parseInt(id) + 1;
-    navigate(`/detail/${nextId}`);
-    fetchPokemon(nextId).then((pokeData) => {
-      setPokeDetail(pokeData);
-    });
-  };
-
-  const handlePrevious = () => {
-    const previousId = parseInt(id) - 1;
-    navigate(`/detail/${previousId}`);
-    fetchPokemon(previousId).then((pokeData) => {
-      setPokeDetail(pokeData);
-    });
-  };
 
   return (
     <Container2>
@@ -62,9 +46,9 @@ const Detail = () => {
               {pokeDetail.hp && <p>HP: {pokeDetail.hp}</p>}
               {pokeDetail.attack && <p>Attack: {pokeDetail.attack}</p>}
               {pokeDetail.defense && <p>Defense: {pokeDetail.defense}</p>}
-              {pokeDetail.speed && <p>Speed: {pokeDetail.speed}</p>}
+              {/* {pokeDetail.speed && <p>Speed: {pokeDetail.speed}</p>}
               {pokeDetail.weight && <p>weight: {pokeDetail.weight}</p>}
-              {pokeDetail.height && <p>height: {pokeDetail.height}</p>}
+              {pokeDetail.height && <p>height: {pokeDetail.height}</p>} */}
             </Stats>
           </StatsContainer>
           <TypesTitle>Types</TypesTitle>
@@ -81,17 +65,11 @@ const Detail = () => {
           </TypesContainer>
         </Div1>
         <Div2>
-          {pokeDetail.sprites && (
-            <Icon srcSet={pokeDetail.sprites} alt="pokemon sprite" />
+          {pokeDetail.image && (
+            <Icon srcSet={pokeDetail.image} alt="pokemon sprite" />
           )}
         </Div2>
       </Container>
-      <PageContainer>
-        <ButtonContainer>
-          <PreviousButton onClick={handlePrevious}>Anterior</PreviousButton>
-          <NextButton onClick={handleNext}>Siguiente</NextButton>
-        </ButtonContainer>
-      </PageContainer>
     </Container2>
   );
 };

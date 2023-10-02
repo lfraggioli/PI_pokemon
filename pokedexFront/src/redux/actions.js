@@ -94,12 +94,24 @@ export const fetchPokemon = (id) => {
   const baseURL = "https://pokeapi.co/api/v2/";
   return axios(`${baseURL}pokemon/${id}`).then((response) => {
     const data = response.data;
-    const { id, name, sprites, types, stats, weight, height } = data;
-    const { front_default } = sprites;
+    const {
+      id,
+      name,
+      sprites: {
+        other: {
+          home: { front_default },
+        },
+      },
+      types,
+      stats,
+      weight,
+      height,
+    } = data;
+
     const pokeData = {
       id,
       name,
-      sprites: { front_default },
+      sprites: front_default,
       types: types.map((e) => e.type.name),
       hp: stats[0].base_stat,
       attack: stats[1].base_stat,
@@ -107,6 +119,25 @@ export const fetchPokemon = (id) => {
       speed: stats[5].base_stat,
       weight,
       height,
+    };
+
+    return pokeData;
+  });
+};
+export const fetchDBPokemon = (id) => {
+  const baseURL = "http://localhost:3001/pokemons/db";
+  return axios(`${baseURL}/${id}`).then((response) => {
+    const data = response.data;
+    const { id, name, image, types, hp, attack, defense } = data;
+
+    const pokeData = {
+      id,
+      name,
+      image,
+      types: types.map((e) => e.type.name),
+      hp,
+      attack,
+      defense,
     };
 
     return pokeData;

@@ -1,13 +1,13 @@
 import React from "react";
 import PokemonList from "../../components/Cards/PokemonList";
-import { Background } from "../../components/Home/styles";
+import { Container } from "../../components/Home/styles";
 
 const List = () => {
   return (
     <div>
-      <Background>
+      <Container>
         <PokemonList />{" "}
-      </Background>
+      </Container>
     </div>
   );
 };

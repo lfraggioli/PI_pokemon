@@ -80,8 +80,8 @@ export const Image = styled.img`
   top: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 120%;
-  height: 120%;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   padding-bottom: 1em;
 `;
@@ -91,7 +91,8 @@ export const ContentWrapper = styled.div`
   flex-direction: column;
   padding: 20px;
   margin-bottom: 0;
-  height: 100vh;
+  min-height: 100vh;
+  height: auto;
   position: relative;
 `;
 

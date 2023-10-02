@@ -1,5 +1,5 @@
 import styled from "styled-components";
-
+import background from "../../assets/form-bg.png";
 export const FormContainer = styled.div`
   position: absolute;
   top: 50%;
@@ -11,7 +11,12 @@ export const FormContainer = styled.div`
   width: 500px;
   height: 700px;
 `;
-
+export const Background = styled.div`
+  background-image: url(${background});
+  object-fit: contain;
+  width: 100%;
+  height: 100vw;
+`;
 export const FormWrapper = styled.div`
   display: flex;
   margin-top: 2em;
@@ -29,7 +34,7 @@ export const FormWrapper = styled.div`
     top: 0;
     padding-bottom: 0.5em;
     color: #f5f5f5;
-    -webkit-text-stroke: 1% black;
+    text-shadow: 1px 2px 2px black;
     font-weight: 400;
     font-size: 2em;
   }
@@ -52,7 +57,7 @@ export const FormWrapper = styled.div`
   input {
     padding: 0.5rem;
     font-size: 1rem;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 5px;
     margin-bottom: 1em; /* Agrega la propiedad margin-bottom para agregar un salto de línea */
   }

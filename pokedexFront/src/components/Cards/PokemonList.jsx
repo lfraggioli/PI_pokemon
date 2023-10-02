@@ -31,7 +31,9 @@ function PokemonList() {
       <ContentWrapper>
         <Box>
           {pokeList.map((pokemon) => (
-            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+            <Link to={`/detail/${pokemon.id}`}>
+              <PokemonCard key={pokemon.id} pokemon={pokemon} />
+            </Link>
           ))}
         </Box>
         <ParentContainer>

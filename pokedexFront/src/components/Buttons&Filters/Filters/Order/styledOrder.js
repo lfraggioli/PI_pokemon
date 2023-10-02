@@ -31,32 +31,43 @@ export const Button = styled.button`
     background-color: #fff;
     color: #000;
   }
-  font-family: "Lato", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 900;
   text-transform: uppercase;
 `;
+export const Label = styled.label`
+  font-family: "Roboto", sans-serif;
+  color: #ffff;
+  font-weight: 900;
+  margin-bottom: 5px;
+  text-align: center;
+  text-shadow: 2px 2px 2px black;
+`;
+
 export const ButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   gap: 0.5em;
   z-index: 2;
   padding-top: 0em;
-  margin-top: 1em;
   top: 50%;
-  bottom: 0;
+  margin-bottom: 10%;
   position: relative;
 `;
 export const ParentContainer = styled.div`
   position: relative;
   height: auto;
+  top: 12%;
 `;
 
 export const OrderContainer = styled.div`
   display: flex;
   left: 50%;
-
-  padding-bottom: 2em;
-  transform: translate(-50%);
+  flex-direction: column;
+  margin-top: 2em;
+  padding-top: 2em;
+  padding-bottom: 1em;
+  transform: translate(-50% -50%);
   position: absolute;
   z-index: 0;
 `;

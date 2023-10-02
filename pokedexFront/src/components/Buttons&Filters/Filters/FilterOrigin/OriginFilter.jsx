@@ -37,10 +37,10 @@ export const OriginFilter = () => {
         <OriginContainer>
           <ButtonContainer>
             <OriginButton onClick={handleApiClick} value="api">
-              API
+              Lista oficial
             </OriginButton>
             <OriginButton onClick={handleDbClick} value="db">
-              DB
+              Mis Pokemon
             </OriginButton>
           </ButtonContainer>{" "}
         </OriginContainer>

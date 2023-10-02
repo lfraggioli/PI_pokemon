@@ -75,8 +75,9 @@ export const Icon = styled.img`
   position: absolute;
   width: 350px;
   right: 0;
+  left: 50%; /* Centra el icono en el eje X */
   top: 50%;
-  transform: translateY(-50%);
+  transform: translate(-50%, -50%); /* Centra el icono en el eje Y */
 `;
 
 export const Name = styled.div`

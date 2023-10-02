@@ -8,10 +8,12 @@ import {
   OrderContainer,
   ParentContainer,
   Container,
+  Label,
 } from "./styledOrder";
 import OrderedCards from "./OrderedCards";
+import { Background } from "../../../Home/styles";
 
-const Order = () => {
+const OrderPage = () => {
   const pokeList = useSelector((state) => state.allPokemon);
   const dispatch = useDispatch();
   const [order, setOrder] = useState("asc");
@@ -26,10 +28,11 @@ const Order = () => {
 
   return (
     <>
+      {" "}
       <ParentContainer>
         <OrderContainer>
+          <Label>Ordenar por nombre: </Label>
           <ButtonContainer>
-            <label>Ordenar por nombre: </label>
             <Button value="asc" onClick={handleSortChange}>
               Ascendente
             </Button>
@@ -41,9 +44,9 @@ const Order = () => {
       </ParentContainer>
       <Container>
         <OrderedCards pokeList={pokeList} />
-      </Container>
+      </Container>{" "}
     </>
   );
 };
 
-export default Order;
+export default OrderPage;

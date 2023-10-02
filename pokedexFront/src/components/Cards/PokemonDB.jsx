@@ -10,8 +10,12 @@ import {
 import Pagination from "./Pagination";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { Box } from "./styles/styledCards";
+import { Box, ContentWrapper } from "./styles/styledCards";
 import PokemonCard from "./Card";
+import {
+  PageContainer,
+  ParentContainer,
+} from "../Buttons&Filters/styledButtons";
 
 function PokemonDB() {
   const myPokemons = useSelector((state) => state.myPokemons);
@@ -19,23 +23,17 @@ function PokemonDB() {
   useEffect(() => {
     dispatch(getDBPokemons());
   }, [dispatch]);
-  const loadPreviousPage = () => {
-    dispatch(getPreviousPage());
-  };
-
-  const loadNextPage = () => {
-    dispatch(getNextPage());
-  };
 
   return (
-    <>
+    <ContentWrapper>
       <Box>
         {myPokemons.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          <Link to={`/detail/${pokemon.id}`}>
+            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          </Link>
         ))}
-      </Box>
-      <Pagination onPreviousPage={loadPreviousPage} onNextPage={loadNextPage} />
-    </>
+      </Box>{" "}
+    </ContentWrapper>
   );
 }
 

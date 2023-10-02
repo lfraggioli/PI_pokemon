@@ -8,7 +8,7 @@ export const ParentContainer = styled.div`
 export const OriginContainer = styled.div`
   display: flex;
   left: 50%;
-  top: 5%;
+  top: 25%;
   padding-top: 1em;
   transform: translate(-50% -50%);
   position: absolute;

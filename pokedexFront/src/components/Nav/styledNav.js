@@ -11,21 +11,33 @@ export const Lista = styled.ul`
 
 export const ItemLi = styled.li`
   font-size: 1em;
-  text-shadow: 1px 2px 2px black;
-  font-family: "Roboto", sans-serif;
+  text-shadow: 1px 1px 1px black;
+  font-family: "Dela Gothic One", cursive;
   color: white;
   cursor: pointer;
-  font-weight: 900;
-  text-transform: uppercase;
-  padding: 0.5em;
+  font-weight: 500;
+  text-transform: lowercase;
+  padding: 0.75em;
   margin-left: 1em;
-  border-radius: 7px;
+  border-radius: 12px;
   transition: background-color 0.3s ease-in-out;
 
   &:hover {
     background-color: #831010;
     text-shadow: 1px 2px 2px #d53141;
   }
+`;
+
+export const Logo = styled.img`
+  width: 100px;
+  margin: 0;
+  padding-left: 0.5em;
+  left: 5%;
+`;
+export const LogoCenter = styled.img`
+  width: 100px;
+  margin: 0;
+  align-self: center;
 `;
 
 export const NavStyle = styled.nav`

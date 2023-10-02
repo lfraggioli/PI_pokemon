@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import {
   Box,
   BoxItem,
+  ContentWrapper,
   Icon,
   PokeID,
   PokeName,
@@ -17,6 +18,13 @@ import {
   TypesContainer,
 } from "../../Cards/styles/styledCards";
 import PokemonCard from "../../Cards/Card";
+import {
+  ButtonContainer,
+  NextButton,
+  PageContainer,
+  ParentContainer,
+  PreviousButton,
+} from "../styledButtons";
 
 const FilteredByType = () => {
   const dispatch = useDispatch();
@@ -42,14 +50,22 @@ const FilteredByType = () => {
 
   return (
     <div>
-      <Box>
-        {visiblePokemon.map((pokemon) => (
-          <PokemonCard key={pokemon.id} pokemon={pokemon} />
-        ))}
-      </Box>
-
-      <button onClick={handleLoadLess}>Anterior</button>
-      <button onClick={handleLoadMore}>Siguiente</button>
+      {" "}
+      <ContentWrapper>
+        <Box>
+          {visiblePokemon.map((pokemon) => (
+            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+          ))}
+        </Box>{" "}
+        <ParentContainer>
+          <PageContainer>
+            <ButtonContainer>
+              <PreviousButton onClick={handleLoadLess}>Anterior</PreviousButton>
+              <NextButton onClick={handleLoadMore}>Siguiente</NextButton>
+            </ButtonContainer>{" "}
+          </PageContainer>
+        </ParentContainer>
+      </ContentWrapper>
     </div>
   );
 };

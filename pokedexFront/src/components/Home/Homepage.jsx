@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-import { Background, Container, ResultsContainer } from "./styles";
+import {
+  Background,
+  Container,
+  ResultsContainer,
+  Title,
+  TitleImage,
+} from "./styles";
 
 import SearchBar from "../Search/SearchBar";
 import SearchResults from "../Search/SearchResults";
 import axios from "axios";
 import { SearchBarContainer } from "../Buttons&Filters/styledButtons";
-import { MainContainer } from "../Cards/styles/styledCards";
 
+import logo from "../../assets/LOGO.png";
 export const Homepage = () => {
   const [pokeSearch, setPokeSearch] = useState([]);
   const [isLoading, setIsLoading] = useState(false); // Agrega un estado para manejar la carga
@@ -28,18 +34,18 @@ export const Homepage = () => {
 
   return (
     <>
-      <Background>
-        <Container>
-          <SearchBarContainer>
-            <SearchBar onSearch={handleSearch} isLoading={isLoading} />{" "}
-            {/* Pasa isLoading como una prop al componente SearchBar */}
-          </SearchBarContainer>
-
-          <ResultsContainer>
-            <SearchResults searchResults={pokeSearch} />
-          </ResultsContainer>
-        </Container>
-      </Background>
+      <Title>Ingresa un nombre de un Pokémon</Title>
+      <TitleImage src={logo} />
+      <Background />
+      <SearchBarContainer>
+        <SearchBar onSearch={handleSearch} isLoading={isLoading} />{" "}
+        {/* Pasa isLoading como una prop al componente SearchBar */}
+      </SearchBarContainer>
+      <Container>
+        <ResultsContainer>
+          <SearchResults searchResults={pokeSearch} />
+        </ResultsContainer>
+      </Container>
     </>
   );
 };

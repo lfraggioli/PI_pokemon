@@ -4,6 +4,7 @@ import { addPokemon } from "../../redux/actions";
 import {
   AddButton,
   AddType,
+  Background,
   Button,
   ButtonContainer,
   DeleteType,
@@ -82,13 +83,13 @@ const AddPokemon = () => {
     });
   };
   return (
-    <>
+    <Background>
       <FormContainer>
         <FormWrapper>
-          <h2>Create Pokémon</h2>
+          <h2>¡Crea el tuyo!</h2>
           <form onSubmit={handleSubmit}>
             <div>
-              <label>Name</label>
+              <label>Nombre</label>
               <input
                 type="text"
                 name="name"
@@ -97,7 +98,7 @@ const AddPokemon = () => {
               />
             </div>
             <div>
-              <label>Image</label>
+              <label>Imagen</label>
               <input
                 type="text"
                 name="image"
@@ -107,7 +108,7 @@ const AddPokemon = () => {
               />
             </div>
             <div>
-              <label>Attack</label>
+              <label>Ataque</label>
               <input
                 type="number" // Cambia el tipo a "number"
                 name="attack"
@@ -116,7 +117,7 @@ const AddPokemon = () => {
               />
             </div>
             <div>
-              <label>Defense</label>
+              <label>Defensa</label>
               <input
                 type="number" // Cambia el tipo a "number"
                 name="defense"
@@ -125,7 +126,7 @@ const AddPokemon = () => {
               />
             </div>
             <div>
-              <label>HP</label>
+              <label>HP (salud)</label>
               <input
                 type="number"
                 name="hp"
@@ -162,7 +163,7 @@ const AddPokemon = () => {
           </form>
         </FormWrapper>
       </FormContainer>
-    </>
+    </Background>
   );
 };
 

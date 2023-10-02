@@ -11,12 +11,12 @@ body {
     font-family: 'Dela Gothic One', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  margin: 0px;
-        height: 100%;
+  padding: 0;
   display: flex;
-  min-height: 100vh;
+  min-height: 100%;
   flex-direction: column;
   background-color: #1F1D26;
+  overflow-y: auto;
 }
 * {
   -webkit-font-smoothing: antialiased;

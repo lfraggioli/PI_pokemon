@@ -12,39 +12,39 @@ export const slideIn = keyframes`
 
 export const SearchBarContainer = styled.div`
   position: absolute;
-  top: 20%;
-  margin-top: 2em;
-  margin-bottom: 1em;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 40%;
+  left: 50%; /* Centra el elemento en el eje X */
+  transform: translateX(-60%); /* Ajusta la posición horizontal */
+  margin-bottom: 0;
   z-index: 2;
 `;
 export const ParentContainer = styled.div`
   position: relative;
-  height: 100vh;
+  height: auto;
 `;
 
 export const PageContainer = styled.div`
   display: flex;
   left: 50%;
 
-  padding-bottom: 1em;
+  bottom: 0;
   transform: translate(-50%);
   position: absolute;
 `;
 
 export const SearchInput = styled.input`
   padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  border: none;
+  border-radius: 10px 0px 0px 10px;
   width: 300px;
   transition: width 0.3s ease; /* Transición para el cambio de ancho */
   margin-bottom: 10px;
-
+  font-size: large;
+  font-family: "Roboto", sans-serif;
   &:focus {
     width: 400px; /* Ancho expandido al hacer clic en el input */
   }
-  animation: ${slideIn} 0.5s ease-in-out; /* Aplicamos la animación */
+  animation: ${slideIn} 0.6s ease-in-out; /* Aplicamos la animación */
 `;
 
 export const ButtonContainer = styled.div`
@@ -92,13 +92,21 @@ export const NextButton = styled.button`
 `;
 
 export const SearchButton = styled.button`
-  padding: 10px 20px;
-  top: 1em;
-  background-color: #007bff;
-  color: #fff;
+  padding: 10px;
+  position: absolute;
+  border-radius: 0px 10px 10px 0px;
+  margin-bottom: 10px;
+  background-color: #d53141;
   border: none;
-  border-radius: 5px;
+  color: white;
+  font-size: large;
   cursor: pointer;
+  width: 100px;
+  transition: 0.2s ease-in-out;
+  font-family: "Roboto", sans-serif;
+  &:hover {
+    background-color: #c52018;
+  }
 `;
 
 export const ClearButton = styled.button`
