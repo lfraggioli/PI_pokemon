@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { Pokemon, Type } = require("../db");
+const { Pokemon, Type } = require("../../db");
 const urlId = "https://pokeapi.co/api/v2/pokemon/";
 const validarNombre = (name) => {
   if (typeof name === "string") {
@@ -26,7 +26,7 @@ const handlerGetPokemonById = async (url, id) => {
       id: i.id,
       name: renombrar(i.name),
       types: i.types.map((e) => renombrar(e.type.name)),
-      image: i.sprites.front_default,
+      image: i.sprites.other.home.front_default,
       hp: i.stats[0].base_stat,
       attack: i.stats[1].base_stat,
       defense: i.stats[2].base_stat,
@@ -65,15 +65,9 @@ const getPokemonById = async (req, res) => {
     const pokemon = await handlerGetPokemonById(urlId, id);
 
     if (!pokemon) {
-      const pokemonDB = await handlerGetPokemonByIdDB(id);
-
-      if (!pokemonDB) {
-        res.status(404).json({
-          message: "No se a encontrado un Pokemon con ese Nombre o ID",
-        });
-      }
-
-      return res.json(pokemonDB);
+      res.status(404).json({
+        message: "No se a encontrado un Pokemon con ese Nombre o ID",
+      });
     }
 
     return res.json(pokemon);
@@ -82,4 +76,4 @@ const getPokemonById = async (req, res) => {
   }
 };
 
-module.exports = getPokemonById;
+module.exports = { getPokemonById };

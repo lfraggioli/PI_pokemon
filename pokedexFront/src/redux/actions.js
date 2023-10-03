@@ -9,7 +9,6 @@ import {
   SET_PAGINATION,
   SET_POKEMON_TYPES,
   GET_DB,
-  GET_SORTED,
   SORT_POKE_LIST,
 } from "./actionTypes";
 
@@ -75,6 +74,7 @@ export const getDBPokemons = () => {
     }
   };
 };
+
 export const getBackUpPokemons = () => {
   const endpoint = "http://localhost:3001/pokemons/all";
   return async (dispatch) => {

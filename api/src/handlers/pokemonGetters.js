@@ -89,9 +89,31 @@ const handlerGetPokemonByNameDB = async (id) => {
     console.log(error);
   }
 };
+
+const handlerGetPokemonByName = async (url, name) => {
+  try {
+    const { data } = await axios.get(`${url}/${name}`);
+    const i = data;
+    return {
+      id: i.id,
+      name: renombrar(i.name),
+      types: i.types.map((e) => renombrar(e.type.name)),
+      image: i.sprites.other.home.front_default,
+      hp: i.stats[0].base_stat,
+      attack: i.stats[1].base_stat,
+      defense: i.stats[2].base_stat,
+      speed: i.stats[5].base_stat,
+      height: i.height,
+      weight: i.weight,
+    };
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = {
   handlerGetPokemonAPI,
   handlerGetPokemonById,
   handlerGetPokemonByNameDB,
   handlerGetPokemonDB,
+  handlerGetPokemonByName,
 };

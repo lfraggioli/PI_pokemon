@@ -1,14 +1,15 @@
 import React from "react";
-import { Box, ContentWrapper } from "../Cards/styles/styledCards";
 import PokemonCard from "../Cards/Card";
-import { ResultCard } from "../Home/styles";
+import { Link } from "react-router-dom";
 
 export default function SearchResults({ searchResults }) {
   return (
     <>
       {" "}
       {searchResults.map((pokemon) => (
-        <PokemonCard key={pokemon.id} pokemon={pokemon} />
+        <Link to={`/detail/${pokemon.id}`}>
+          <PokemonCard key={pokemon.id} pokemon={pokemon} />{" "}
+        </Link>
       ))}
     </>
   );

@@ -1,6 +1,6 @@
 const axios = require("axios");
-const { Pokemon, Type } = require("../db");
-const { handlerCreatePokemon } = require("../handlers/pokemonSetters");
+const { Pokemon, Type } = require("../../db");
+const { handlerCreatePokemon } = require("../../handlers/pokemonSetters");
 
 const validarDatosPostPokemon = (pokemon) => {
   const { name, image, hp, attack, defense, speed, weight, height } = pokemon;

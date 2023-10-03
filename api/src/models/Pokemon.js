@@ -26,10 +26,7 @@ module.exports = (sequelize) => {
         max: 500,
       },
     },
-    attack: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
+
     attack: {
       type: DataTypes.INTEGER,
       validate: {
@@ -42,27 +39,6 @@ module.exports = (sequelize) => {
       validate: {
         min: 10,
         max: 1000,
-      },
-    },
-    speed: {
-      type: DataTypes.INTEGER,
-      validate: {
-        min: 10,
-        max: 100,
-      },
-    },
-    weight: {
-      type: DataTypes.INTEGER,
-      validate: {
-        min: 10,
-        max: 4000,
-      },
-    },
-    height: {
-      type: DataTypes.INTEGER,
-      validate: {
-        min: 10,
-        max: 150,
       },
     },
   });

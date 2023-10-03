@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
-
 import { useDispatch, useSelector } from "react-redux";
 import { getNextPage, getPokemons, getPreviousPage } from "../../redux/actions";
 import Pagination from "./Pagination";
 import { Link } from "react-router-dom";
 import { Box, ContentWrapper } from "./styles/styledCards";
 import PokemonCard from "./Card";
-import { Background } from "../Home/styles";
 import {
   PageContainer,
   ParentContainer,

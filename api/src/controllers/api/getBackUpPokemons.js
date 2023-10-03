@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { handlerGetPokemonAPI } = require("../handlers/pokemonGetters");
+const { handlerGetPokemonAPI } = require("../../handlers/pokemonGetters");
 const url = "https://pokeapi.co/api/v2/pokemon?limit=10000&offset=0";
 const getAll = async (req, res) => {
   try {

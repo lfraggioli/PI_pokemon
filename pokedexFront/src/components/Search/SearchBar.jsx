@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  SearchBarContainer,
-  SearchButton,
-  SearchInput,
-} from "../Buttons&Filters/styledButtons";
+import { SearchButton, SearchInput } from "../Buttons&Filters/styledButtons";
 
 export default function SearchBar(props) {
   const [pokeSearch, setPokeSearch] = useState([]);
