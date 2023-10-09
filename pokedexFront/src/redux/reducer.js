@@ -31,7 +31,7 @@ function rootReducer(state = initialState, action) {
       };
 
     case FILTERTYPE:
-      const filtered = state.allPokemon.filter((p) => {
+      const filtered = [...state.filteredPokemon].filter((p) => {
         // Verificamos si e.temperaments es un array y contiene action.payload
         return Array.isArray(p.types) && p.types.includes(action.payload);
       });
@@ -43,6 +43,7 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         allPokemon: action.payload,
+        filteredPokemon: action.payload,
       };
     case GET_DB:
       return {
@@ -55,16 +56,24 @@ function rootReducer(state = initialState, action) {
         pokeList: action.payload,
       };
     case SET_ORIGIN:
+      let breedsFromApiOrDbOrAll = [];
+      // Si la acción es 'all', selecciona todas las razas
+      if (action.payload === "all") {
+        breedsFromApiOrDbOrAll = state.allPokemon;
+        // Si la acción es 'db', selecciona solo las razas con ID de tipo 'string'
+      } else if (action.payload === "db") {
+        breedsFromApiOrDbOrAll = state.allPokemon.filter(
+          (e) => e.id.length > 10
+        );
+        // Si la acción es 'api', selecciona solo las razas con ID de tipo 'number'
+      } else if (action.payload === "api") {
+        breedsFromApiOrDbOrAll = state.allPokemon.filter(
+          (e) => typeof e.id === "number"
+        );
+      }
       return {
         ...state,
-        filteredPokemon:
-          action.payload !== "all"
-            ? state.allPokemon.filter((poke) => {
-                return action.payload === "api"
-                  ? poke.id.length < 10
-                  : typeof poke.id.length === "string";
-              })
-            : state.allPokemon,
+        filteredPokemon: breedsFromApiOrDbOrAll,
       };
     // case GET_SORTED:
     //   return {

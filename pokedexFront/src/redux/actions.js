@@ -12,7 +12,7 @@ import {
 } from "./actionTypes";
 
 export const getPokemons = () => {
-  const endpoint = "http://localhost:3001/pokemons";
+  const endpoint = "http://localhost:3001/pokemons/all";
   return async (dispatch) => {
     try {
       const { data } = await axios.get(endpoint);

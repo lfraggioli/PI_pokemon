@@ -7,6 +7,7 @@ import PokemonCard from "../../Cards/Card";
 import {
   ButtonContainer,
   NextButton,
+  PageButton,
   PageContainer,
   ParentContainer,
   PreviousButton,
@@ -33,24 +34,34 @@ const FilteredByType = ({ filteredPokemon }) => {
     dispatch(setPagination(Math.max(currentPage - 1, 1), itemsPerPage));
   };
 
-  // const quantityPages = filteredPokemon.length / itemsPerPage;
-  console.log("cantidad de paginas: ");
+  const totalPages = Math.ceil(filteredPokemon.length / itemsPerPage);
+  const pageNumbers = Array.from({ length: totalPages }, (_, i) => i + 1);
 
   return (
     <div>
-      {" "}
       <ContentWrapper>
         <Box>
           {visiblePokemon.map((pokemon) => (
             <PokemonCard key={pokemon.id} pokemon={pokemon} />
           ))}
-        </Box>{" "}
+        </Box>
         <ParentContainer>
           <PageContainer>
             <ButtonContainer>
               <PreviousButton onClick={handleLoadLess}>Anterior</PreviousButton>
+              {pageNumbers.map((pageNumber) => (
+                <button
+                  key={pageNumber}
+                  onClick={() =>
+                    dispatch(setPagination(pageNumber, itemsPerPage))
+                  }
+                  active={pageNumber === currentPage}
+                >
+                  {pageNumber}
+                </button>
+              ))}
               <NextButton onClick={handleLoadMore}>Siguiente</NextButton>
-            </ButtonContainer>{" "}
+            </ButtonContainer>
           </PageContainer>
         </ParentContainer>
       </ContentWrapper>

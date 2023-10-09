@@ -1,10 +1,12 @@
 const axios = require("axios");
 const { handlerGetPokemonAPI } = require("../../handlers/pokemonGetters");
 const { Pokemon, Type } = require("../../db");
-const url = "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0";
+const url = "https://pokeapi.co/api/v2/pokemon?limit=2000&offset=0";
 const getAll = async (req, res) => {
   try {
-    const { data } = await axios(url);
+    const { data } = await axios(url, {
+      timeout: 100000, // tiempo de espera en milisegundos
+    });
     const allPokemon = data.results;
     const pokeArrayOfPromises = handlerGetPokemonAPI(allPokemon);
     const listAll = await Promise.all(pokeArrayOfPromises);
