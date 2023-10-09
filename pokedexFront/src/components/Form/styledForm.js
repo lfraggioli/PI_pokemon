@@ -13,8 +13,8 @@ export const FormContainer = styled.div`
 `;
 export const Background = styled.div`
   background-image: url(${background});
-  object-fit: contain;
-  width: 100%;
+  background-size: contain;
+
   height: 100vw;
 `;
 export const FormWrapper = styled.div`

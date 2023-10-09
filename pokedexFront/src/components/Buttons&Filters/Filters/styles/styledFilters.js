@@ -63,8 +63,9 @@ export const DivButton = styled.div`
   column-gap: 0%;
   justify-content: center;
   align-items: center;
-  top: 30%;
+  top: 50%;
   margin-left: 250px;
-  margin-top: 3em;
+  margin-top: 5em;
   padding-top: 1em;
+  z-index: 3;
 `;

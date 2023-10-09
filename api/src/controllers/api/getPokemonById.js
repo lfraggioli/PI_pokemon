@@ -64,10 +64,22 @@ const getPokemonById = async (req, res) => {
     const id = validarNombre(req.params.id);
     const pokemon = await handlerGetPokemonById(urlId, id);
 
+    // if (!pokemon) {
+    // res.status(404).json({
+    //   message: "No se a encontrado un Pokemon con ese Nombre o ID",
+    // });
+
+    // }
     if (!pokemon) {
-      res.status(404).json({
-        message: "No se a encontrado un Pokemon con ese Nombre o ID",
-      });
+      const pokemonDB = await handlerGetPokemonByIdDB(id);
+
+      if (!pokemonDB) {
+        res.status(404).json({
+          message: "No se a encontrado un Pokemon con ese Nombre o ID",
+        });
+      }
+
+      return res.json(pokemonDB);
     }
 
     return res.json(pokemon);

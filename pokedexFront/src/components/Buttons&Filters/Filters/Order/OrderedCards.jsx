@@ -1,22 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getSorted, setPagination } from "../../../../redux/actions";
-import { Link } from "react-router-dom";
-import {
-  Box,
-  BoxItem,
-  ContentWrapper,
-  Icon,
-  PokeID,
-  PokeName,
-  Rectangle1,
-  Rectangle2,
-  Stats,
-  TopText,
-  TypeDiv,
-  TypeText,
-  TypesContainer,
-} from "../../../Cards/styles/styledCards";
+import { setPagination } from "../../../../redux/actions";
+import { Box, ContentWrapper } from "../../../Cards/styles/styledCards";
 import PokemonCard from "../../../Cards/Card";
 import {
   NextButton,

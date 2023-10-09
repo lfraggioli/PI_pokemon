@@ -63,6 +63,7 @@ const handlerGetPokemonById = async (url, id) => {
     console.log(error);
   }
 };
+
 const handlerGetPokemonByNameDB = async (id) => {
   try {
     console.log(id);

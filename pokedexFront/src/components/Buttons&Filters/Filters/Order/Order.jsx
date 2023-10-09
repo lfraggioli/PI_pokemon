@@ -4,14 +4,12 @@ import { getBackUpPokemons, sortPokeList } from "../../../../redux/actions";
 import {
   Button,
   ButtonContainer,
-  Buttons,
   OrderContainer,
   ParentContainer,
   Container,
   Label,
 } from "./styledOrder";
 import OrderedCards from "./OrderedCards";
-import { Background } from "../../../Home/styles";
 
 const OrderPage = () => {
   const pokeList = useSelector((state) => state.allPokemon);

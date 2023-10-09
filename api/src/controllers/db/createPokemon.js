@@ -45,6 +45,10 @@ const validarDatosPostPokemon = (pokemon) => {
 const createPokemon = async (req, res) => {
   try {
     const { name, image, hp, attack, defense, types } = req.body;
+    if (!image) {
+      image =
+        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png";
+    }
     const newPokemon = await Pokemon.create({
       name,
       image,

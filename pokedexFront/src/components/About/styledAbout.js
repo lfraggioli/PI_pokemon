@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import background from "../../assets/body_bg.png";
 
 export const Container = styled.div`
   display: flex;
@@ -29,7 +28,7 @@ export const TextContainer = styled.div`
   padding-left: 2em;
   transform: translate(-20%);
   text-align: right;
-  margin-top: 3em;
+  margin-top: 6em;
 `;
 
 export const Title = styled.h1`

@@ -28,7 +28,7 @@ function Nav(props) {
               </Link>
               <Link to="/list">
                 {" "}
-                <ItemLi>Pokemon List</ItemLi>
+                <ItemLi>Pokemon</ItemLi>
               </Link>
             </Lista>
           </Div2>

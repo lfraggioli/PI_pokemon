@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  Container,
-  Line,
-  Parragraph,
-  Photo,
-  TextContainer,
-  Title,
-} from "./styledAbout";
+import { Container, Line, Photo, TextContainer, Title } from "./styledAbout";
 import photo from "../../assets/aboutPic.png";
 const AboutMe = () => {
   return (
@@ -34,13 +27,7 @@ const AboutMe = () => {
               Fue un arduo trabajo de investigación, pero me divertí mucho
               haciéndolo. También he aprendido muchísimo en el proceso.
             </Line>
-          </div>
-          <br />
-          <div>
-            <Line>
-              Quedan cosas para mejorar, pero estoy muy contento con el
-              resultado.
-            </Line>
+
             <br />
           </div>
 

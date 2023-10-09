@@ -1,22 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getBackUpPokemons, setPagination } from "../../../redux/actions";
-import { Link } from "react-router-dom";
-import {
-  Box,
-  BoxItem,
-  ContentWrapper,
-  Icon,
-  PokeID,
-  PokeName,
-  Rectangle1,
-  Rectangle2,
-  Stats,
-  TopText,
-  TypeDiv,
-  TypeText,
-  TypesContainer,
-} from "../../Cards/styles/styledCards";
+import { setPagination } from "../../../redux/actions";
+
+import { Box, ContentWrapper } from "../../Cards/styles/styledCards";
 import PokemonCard from "../../Cards/Card";
 import {
   ButtonContainer,
@@ -26,9 +12,8 @@ import {
   PreviousButton,
 } from "../styledButtons";
 
-const FilteredByType = () => {
+const FilteredByType = ({ filteredPokemon }) => {
   const dispatch = useDispatch();
-  const filteredPokemon = useSelector((state) => state.filteredPokemon);
 
   const currentPage = useSelector((state) => state.currentPage);
   const itemsPerPage = useSelector((state) => state.itemsPerPage);
@@ -47,6 +32,9 @@ const FilteredByType = () => {
     // Decrementa la página actual, asegurándote de que no sea menor que 1
     dispatch(setPagination(Math.max(currentPage - 1, 1), itemsPerPage));
   };
+
+  // const quantityPages = filteredPokemon.length / itemsPerPage;
+  console.log("cantidad de paginas: ");
 
   return (
     <div>

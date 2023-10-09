@@ -4,12 +4,11 @@ import {
   FILTERTYPE,
   GET_ALL,
   GET_LIST,
-  GET_NEXT,
-  GET_PREVIOUS,
   SET_PAGINATION,
   SET_POKEMON_TYPES,
   GET_DB,
   SORT_POKE_LIST,
+  SET_ORIGIN,
 } from "./actionTypes";
 
 export const getPokemons = () => {
@@ -27,38 +26,7 @@ export const getPokemons = () => {
     }
   };
 };
-export const getSinglePokemon = (id) => {
-  const endpoint = "http://localhost:3001/pokemons";
-  return axios(`${endpoint}/${id}`).then((response) => {
-    const data = response.data;
-    const {
-      id,
-      name,
-      image,
-      types,
-      hp,
-      attack,
-      defense,
-      speed,
-      weight,
-      height,
-    } = data;
-    const pokeData = {
-      id,
-      name,
-      image,
-      types,
-      hp,
-      attack,
-      defense,
-      speed,
-      weight,
-      height,
-    };
 
-    return pokeData;
-  });
-};
 export const getDBPokemons = () => {
   const endpoint = "http://localhost:3001/pokemons/db";
   return async (dispatch) => {
@@ -72,6 +40,15 @@ export const getDBPokemons = () => {
     } catch (error) {
       return window.alert("Error", error);
     }
+  };
+};
+
+export const filterOrigin = (origin) => {
+  return (dispatch) => {
+    dispatch({
+      type: SET_ORIGIN,
+      payload: origin,
+    });
   };
 };
 
@@ -143,38 +120,11 @@ export const fetchDBPokemon = (id) => {
     return pokeData;
   });
 };
+
 export const filterType = (filter) => {
   return {
     type: FILTERTYPE,
     payload: filter,
-  };
-};
-export const getNextPage = () => {
-  const endpoint = "http://localhost:3001/pokemons/next";
-  return async (dispatch) => {
-    try {
-      const { data } = await axios(endpoint);
-      return dispatch({
-        type: GET_NEXT,
-        payload: data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-};
-export const getPreviousPage = () => {
-  const endpoint = "http://localhost:3001/pokemons/previous";
-  return async (dispatch) => {
-    try {
-      const { data } = await axios(endpoint);
-      return dispatch({
-        type: GET_PREVIOUS,
-        payload: data,
-      });
-    } catch (error) {
-      console.log(error);
-    }
   };
 };
 

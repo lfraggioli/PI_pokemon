@@ -3,14 +3,11 @@ import {
   CREATE_POKEMON,
   FILTERTYPE,
   GET_LIST,
-  GET_NEXT,
-  GET_PREVIOUS,
   SET_POKEMON_TYPES,
   SET_PAGINATION,
   SORT_POKE_LIST,
-  GET_SEARCH,
   GET_DB,
-  GET_SORTED,
+  SET_ORIGIN,
 } from "./actionTypes";
 
 const initialState = {
@@ -30,21 +27,17 @@ function rootReducer(state = initialState, action) {
     case CREATE_POKEMON:
       return {
         ...state,
-        myPokemons: [...state.myPokemons, action.payload],
-        pokeList: [...state.pokeList, action.payload],
+        myPokemons: action.payload,
       };
-    case SET_POKEMON_TYPES:
-      return {
-        ...state,
-        types: action.payload,
-      };
+
     case FILTERTYPE:
-      const filteredPokemon = state.allPokemon.filter((pokemon) =>
-        pokemon.types.includes(action.payload)
-      );
+      const filtered = state.allPokemon.filter((p) => {
+        // Verificamos si e.temperaments es un array y contiene action.payload
+        return Array.isArray(p.types) && p.types.includes(action.payload);
+      });
       return {
         ...state,
-        filteredPokemon,
+        filteredPokemon: filtered,
       };
     case GET_ALL:
       return {
@@ -61,48 +54,51 @@ function rootReducer(state = initialState, action) {
         ...state,
         pokeList: action.payload,
       };
-    case GET_NEXT:
+    case SET_ORIGIN:
       return {
         ...state,
-        pokeList: action.payload,
+        filteredPokemon:
+          action.payload !== "all"
+            ? state.allPokemon.filter((poke) => {
+                return action.payload === "api"
+                  ? poke.id.length < 10
+                  : typeof poke.id.length === "string";
+              })
+            : state.allPokemon,
       };
-    case GET_PREVIOUS:
-      return {
-        ...state,
-        pokeList: action.payload,
-      };
-    case GET_SORTED:
-      return {
-        ...state,
-        orderedPokemon: action.payload,
-      };
+    // case GET_SORTED:
+    //   return {
+    //     ...state,
+    //     orderedPokemon: action.payload,
+    //   };
     case SET_PAGINATION:
       return {
         ...state,
         currentPage: action.payload.page,
         itemsPerPage: action.payload.itemsPerPage,
       };
+    case SET_POKEMON_TYPES:
+      return {
+        ...state,
+        types: action.payload,
+      };
     case SORT_POKE_LIST:
-      let sortedPokemon = state.allPokemon.slice().sort((a, b) => {
+      const sortedPokemon = [...state.filteredPokemon].sort((a, b) => {
         if (action.payload === "asc") {
-          if (a.name > b.name) {
-            return 1;
+          // Verificamos si a y b tienen la propiedad 'name' antes de compararlas
+          if (a.name && b.name) {
+            return a.name.localeCompare(b.name);
           }
-          if (b.name > a.name) {
-            return -1;
+        } else if (action.payload === "desc") {
+          // Verificamos si a y b tienen la propiedad 'name' antes de compararlas
+          if (a.name && b.name) {
+            return b.name.localeCompare(a.name);
           }
-          return 0;
-        } else {
-          if (a.name > b.name) {
-            return -1;
-          }
-          if (b.name > a.name) {
-            return 1;
-          }
-          return 0;
         }
+        // Si la acción no es ni 'upward' ni 'falling', no cambiamos el orden.
+        return 0;
       });
-      return { ...state, allPokemon: sortedPokemon };
+      return { ...state, filteredPokemon: sortedPokemon };
     default:
       return state;
   }

@@ -1,4 +1,4 @@
-const { Pokemon } = require("../../db");
+const { Pokemon, Type } = require("../../db");
 const getDBPokemons = async (req, res) => {
   try {
     // Buscar todos los Pokémon con sus tipos asociados
