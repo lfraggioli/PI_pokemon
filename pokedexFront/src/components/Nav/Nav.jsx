@@ -21,14 +21,10 @@ function Nav(props) {
               </Link>
 
               <Link to="/about">
-                <ItemLi>about me</ItemLi>
+                <ItemLi>acerca de</ItemLi>
               </Link>
               <Link to="/create">
-                <ItemLi>create</ItemLi>
-              </Link>
-              <Link to="/list">
-                {" "}
-                <ItemLi>Pokemon</ItemLi>
+                <ItemLi>crear</ItemLi>
               </Link>
             </Lista>
           </Div2>

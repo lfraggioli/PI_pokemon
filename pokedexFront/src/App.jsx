@@ -22,7 +22,6 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<Homepage />} />
-          <Route path="/list" element={<Type />} />
           <Route path="/detail/:id" element={<Detail />} />
           <Route path="/create" element={<Create />} />
           <Route path="/about" element={<About />} />

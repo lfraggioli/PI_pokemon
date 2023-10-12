@@ -3,29 +3,12 @@ import {
   CREATE_POKEMON,
   FILTERTYPE,
   GET_ALL,
-  GET_LIST,
   SET_PAGINATION,
   SET_POKEMON_TYPES,
   GET_DB,
   SORT_POKE_LIST,
   SET_ORIGIN,
 } from "./actionTypes";
-
-export const getPokemons = () => {
-  const endpoint = "http://localhost:3001/pokemons/all";
-  return async (dispatch) => {
-    try {
-      const { data } = await axios.get(endpoint);
-
-      return dispatch({
-        type: GET_LIST,
-        payload: data,
-      });
-    } catch (error) {
-      return window.alert("Error", error);
-    }
-  };
-};
 
 export const getDBPokemons = () => {
   const endpoint = "http://localhost:3001/pokemons/db";

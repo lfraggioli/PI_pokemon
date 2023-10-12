@@ -11,10 +11,10 @@ export const slideIn = keyframes`
 `;
 
 export const SearchBarContainer = styled.div`
-  position: absolute;
-  top: 40%;
+  position: fixed;
+  top: 10%;
   left: 50%; /* Centra el elemento en el eje X */
-  transform: translateX(-60%); /* Ajusta la posición horizontal */
+  transform: translateX(-50%); /* Ajusta la posición horizontal */
   margin-bottom: 0;
   z-index: 2;
 `;
@@ -36,13 +36,13 @@ export const SearchInput = styled.input`
   padding: 10px;
   border: none;
   border-radius: 10px 0px 0px 10px;
-  width: 300px;
+  width: 150px;
   transition: width 0.3s ease; /* Transición para el cambio de ancho */
   margin-bottom: 10px;
   font-size: large;
   font-family: "Roboto", sans-serif;
   &:focus {
-    width: 400px; /* Ancho expandido al hacer clic en el input */
+    width: 250px; /* Ancho expandido al hacer clic en el input */
   }
   animation: ${slideIn} 0.6s ease-in-out; /* Aplicamos la animación */
 `;
@@ -93,7 +93,7 @@ export const NextButton = styled.button`
 
 export const SearchButton = styled.button`
   padding: 10px;
-  position: absolute;
+  position: relative;
   border-radius: 0px 10px 10px 0px;
   margin-bottom: 10px;
   background-color: #d53141;
@@ -117,4 +117,61 @@ export const ClearButton = styled.button`
   border-radius: 0 5px 5px 0; /* Bordes redondeados solo en el lado derecho */
   cursor: pointer;
   margin-left: 0; /* Eliminamos el margen izquierdo */
+`;
+
+export const Select = styled.select`
+  appearance: none;
+  background-color: #f5f5f5;
+  border: none;
+  border-radius: 4px;
+  color: #333;
+  font-size: 16px;
+  padding: 8px 12px;
+  transition: all 0.4s ease-in-out;
+
+  &:hover {
+    background-color: #e0e0e0;
+    color: #333;
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #0077ff;
+  }
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  color: #f5f5f5;
+  background-color: #000;
+`;
+
+export const Option = styled.option`
+  background-color: #f5f5f5;
+  color: #333;
+  font-size: 16px;
+  transition: all 0.4s ease-in-out;
+  cursor: pointer;
+  &:hover {
+    background-color: #e0e0e0;
+  }
+
+  &:checked {
+    background-color: #e0e0e0;
+    color: #fff;
+  }
+`;
+
+export const DeleteButton = styled.button`
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  margin-left: 1rem;
+  float: right;
+
+  transition: background-color 0.2s ease-in-out;
+  &:hover {
+    background-color: darkred;
+  }
 `;

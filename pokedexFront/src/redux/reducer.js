@@ -14,7 +14,7 @@ const initialState = {
   allPokemon: [],
   backUp: [],
   myPokemons: [],
-  pokeList: [],
+  // pokeList: [],
   types: [],
   currentPage: 1,
   itemsPerPage: 12,
@@ -50,11 +50,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         myPokemons: action.payload,
       };
-    case GET_LIST:
-      return {
-        ...state,
-        pokeList: action.payload,
-      };
+    // case GET_LIST:
+    //   return {
+    //     ...state,
+    //     pokeList: action.payload,
+    //   };
     case SET_ORIGIN:
       let breedsFromApiOrDbOrAll = [];
       // Si la acción es 'all', selecciona todas las razas

@@ -9,8 +9,13 @@ export function validateForm(input) {
 
   if (input.name === "") {
     errors.name = "Name is required";
-  } else if (!/^[A-Za-z ]+$/.test(input.name))
+  } else if (!/^[A-Za-z ]+$/.test(input.name)) {
     errors.name = "Sin caracteres especiales o números!";
+  }
+
+  if (input.name.length > 20) {
+    errors.name = "Nombre demasiado largo. maximo de caracteres 20";
+  }
 
   //   if (input.image === "") {
   //     errors.image = "Ingrese una URL";

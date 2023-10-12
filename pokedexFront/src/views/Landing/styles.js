@@ -4,7 +4,7 @@ export const Bg = styled.div`
   background-size: cover;
   background-position: center;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 50px);
   position: absolute;
   display: flex;
   justify-content: center;

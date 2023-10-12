@@ -7,11 +7,14 @@ import PokemonCard from "../../Cards/Card";
 import {
   ButtonContainer,
   NextButton,
+  Option,
   PageButton,
   PageContainer,
   ParentContainer,
   PreviousButton,
+  Select,
 } from "../styledButtons";
+import { Link } from "react-router-dom";
 
 const FilteredByType = ({ filteredPokemon }) => {
   const dispatch = useDispatch();
@@ -42,25 +45,37 @@ const FilteredByType = ({ filteredPokemon }) => {
       <ContentWrapper>
         <Box>
           {visiblePokemon.map((pokemon) => (
-            <PokemonCard key={pokemon.id} pokemon={pokemon} />
+            <Link to={`/detail/${pokemon.id}`}>
+              {" "}
+              <PokemonCard key={pokemon.id} pokemon={pokemon} />{" "}
+            </Link>
           ))}
         </Box>
         <ParentContainer>
           <PageContainer>
             <ButtonContainer>
-              <PreviousButton onClick={handleLoadLess}>Anterior</PreviousButton>
-              {pageNumbers.map((pageNumber) => (
-                <button
-                  key={pageNumber}
-                  onClick={() =>
-                    dispatch(setPagination(pageNumber, itemsPerPage))
-                  }
-                  active={pageNumber === currentPage}
-                >
-                  {pageNumber}
-                </button>
-              ))}
-              <NextButton onClick={handleLoadMore}>Siguiente</NextButton>
+              {currentPage !== 1 && (
+                <PreviousButton onClick={handleLoadLess}>
+                  Anterior
+                </PreviousButton>
+              )}
+              <Select
+                value={currentPage}
+                onChange={(event) =>
+                  dispatch(
+                    setPagination(Number(event.target.value), itemsPerPage)
+                  )
+                }
+              >
+                {pageNumbers.map((pageNumber) => (
+                  <Option key={pageNumber} value={pageNumber}>
+                    {pageNumber}
+                  </Option>
+                ))}
+              </Select>
+              {currentPage !== totalPages && (
+                <NextButton onClick={handleLoadMore}>Siguiente</NextButton>
+              )}
             </ButtonContainer>
           </PageContainer>
         </ParentContainer>

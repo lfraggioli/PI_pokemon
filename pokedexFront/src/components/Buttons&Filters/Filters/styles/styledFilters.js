@@ -1,5 +1,5 @@
-import styled from "styled-components";
-
+import styled, { keyframes } from "styled-components";
+import loader from "../../Loader/pokeball.png";
 export const Container = styled.div`
   display: flex;
   flex-direction: row;
@@ -58,14 +58,59 @@ export const ButtonText = styled.span`
   text-transform: uppercase;
 `;
 export const DivButton = styled.div`
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  column-gap: 0%;
-  justify-content: center;
+  display: row;
   align-items: center;
   top: 50%;
-  margin-left: 250px;
-  margin-top: 5em;
+  margin: 5em auto 0;
   padding-top: 1em;
   z-index: 3;
+`;
+
+export const SearchOverlay = styled.div`
+  position: absolute;
+  top: 25%;
+  left: 50%;
+  width: auto;
+  min-width: 700px;
+  border-radius: 5%;
+  box-shadow: 3px 3px 10px 5px rgba(0, 0, 0, 0.8);
+  min-height: 800px;
+  height: auto;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transform: translate(-50%, -50%);
+`;
+
+export const CloseButton = styled.button`
+  padding: 10px;
+  position: absolute;
+  font-size: 16px;
+  top: 1em;
+  right: 1em;
+  border-radius: 5px;
+  border: none;
+  background-color: transparent;
+  color: #f5f5f5;
+  font-weight: bold;
+  font-family: "Lato", sans-serif;
+  cursor: pointer;
+  font-size: x-large;
+`;
+
+const spin = keyframes`
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Loader = styled.image`
+  border: none;
+
+  width: 50px;
+  height: 50px;
+  animation: ${spin} 1s linear infinite;
 `;

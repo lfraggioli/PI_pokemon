@@ -9,6 +9,7 @@ import {
   FormContainer,
   FormWrapper,
   TypeDiv,
+  WarningSpan,
 } from "./styledForm";
 import axios from "axios";
 import { validateForm } from "./validaciones";
@@ -48,7 +49,9 @@ const AddPokemon = () => {
 
   const handleAddType = () => {
     // Agrega un nuevo tipo vacío al formulario
-    setFormData({ ...formData, types: [...formData.types, ""] });
+    if (formData.types.length < 2) {
+      setFormData({ ...formData, types: [...formData.types, ""] });
+    }
   };
   const handleTypeChange = (index, value) => {
     // Actualiza el valor de un tipo en el formulario
@@ -102,7 +105,7 @@ const AddPokemon = () => {
               value={formData.name}
               onChange={handleInputChange}
             />
-            {errors.name && <p>{errors.name}</p>}
+            {errors.name ? <WarningSpan>{errors.name}</WarningSpan> : null}
           </div>
           <div>
             <label>Imagen</label>
@@ -113,7 +116,7 @@ const AddPokemon = () => {
               onChange={handleInputChange}
               placeholder="URL de imagen"
             />
-            {errors.image && <p>{errors.image}</p>}
+            {errors.image ? <WarningSpan>{errors.image}</WarningSpan> : null}
           </div>
           <div>
             <label>Ataque</label>
@@ -123,7 +126,7 @@ const AddPokemon = () => {
               value={formData.attack}
               onChange={handleInputChange}
             />
-            {errors.attack && <p>{errors.attack}</p>}
+            {errors.attack ? <WarningSpan>{errors.attack}</WarningSpan> : null}
           </div>
           <div>
             <label>Defensa</label>
@@ -133,7 +136,9 @@ const AddPokemon = () => {
               value={formData.defense}
               onChange={handleInputChange}
             />
-            {errors.defense && <p>{errors.defense}</p>}
+            {errors.defense ? (
+              <WarningSpan>{errors.defense}</WarningSpan>
+            ) : null}
           </div>
           <div>
             <label>HP (salud)</label>
@@ -143,11 +148,11 @@ const AddPokemon = () => {
               value={formData.hp}
               onChange={handleInputChange}
             />
-            {errors.hp && <p>{errors.hp}</p>}
+            {errors.hp ? <WarningSpan>{errors.hp}</WarningSpan> : null}
           </div>
           <TypeDiv>
             {" "}
-            <label>Tipos:</label>
+            <label>Tipos (max. 2):</label>
             {formData.types.map((type, index) => (
               <TypeDiv key={index}>
                 <AddType

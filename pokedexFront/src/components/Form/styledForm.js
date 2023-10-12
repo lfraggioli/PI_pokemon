@@ -1,5 +1,6 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import background from "../../assets/form-bg.png";
+
 export const FormContainer = styled.div`
   position: absolute;
   top: 50%;
@@ -11,11 +12,30 @@ export const FormContainer = styled.div`
   width: 500px;
   height: 700px;
 `;
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
+export const WarningSpan = styled.span`
+  color: #f5f5f5;
+  font-size: 14px;
+  margin-top: 5px;
+  padding: 2%;
+  border-radius: 5px;
+  font-family: "Lato", sans-serif;
+  background-color: red;
+  animation: ${fadeIn} 0.2s ease-in-out;
+`;
 export const Background = styled.div`
   background-image: url(${background});
-  background-size: contain;
+  background-size: cover;
 
-  height: 100vw;
+  height: 1080px;
 `;
 export const FormWrapper = styled.div`
   display: flex;

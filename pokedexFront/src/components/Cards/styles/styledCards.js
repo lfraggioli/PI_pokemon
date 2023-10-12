@@ -57,6 +57,19 @@ const typeColors = {
   Shadow: "#5E637F",
   shadow: "#5E637F",
 };
+export const TypeOption = styled.option`
+  padding: 5px 15px;
+  margin: 0 2px;
+  font-size: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  font-family: "Lato", sans-serif;
+  text-transform: uppercase;
+  color: #000;
+  background-color: ${({ type }) => typeColors[type]};
+  border-radius: 5px;
+`;
+
 export const TypeBadge = styled.div`
   padding: 5px 15px;
   margin: 0 2px;
@@ -106,7 +119,6 @@ export const Image = styled.img`
   padding-bottom: 1em;
 `;
 export const ContentWrapper = styled.div`
-  margin-left: 200px;
   display: flex;
   flex-direction: column;
   padding: 20px;
